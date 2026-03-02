@@ -10,6 +10,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout repository
@@ -33,3 +36,18 @@ jobs:
         env:
           # This connects the step to the token we'll create in GitHub secrets
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Setup Node.js for GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Publish to GitHub Packages
+        run: |
+          # GitHub Packages requires the package name to be scoped to the repository owner
+          npm pkg set name="@nurahmed123/notion-vibe-text-editor"
+          npm publish
+        env:
+          # The GITHUB_TOKEN is automatically provided by GitHub Actions!
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
