@@ -1,31 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notion Vibe Text Editor - Vanilla Test</title>
+
+  <!-- 1. Load React and ReactDOM (Required because they are externalized from our package) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- 2. Load styles from local dist -->
   <link rel="stylesheet" href="./dist/style.css">
+
   <style>
-    body { font-family: sans-serif; padding: 2rem; background: #fafafa; }
-    #editor-root { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); min-height: 500px; max-width: 800px; margin: 0 auto; border: 1px solid #eaeaea; }
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #fafafa;
+    }
+
+    #editor-root {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      min-height: 500px;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid #eaeaea;
+    }
   </style>
 </head>
+
 <body>
-  <h1 style="text-align: center;">Vanilla JavaScript Integration</h1>
+
+  <h1 style="text-align: center;">Vanilla HTML Test</h1>
+
+  <!-- Container where the editor will mount -->
   <div id="editor-root"></div>
 
-  <!-- Note: in a real environment this would be imported via module or unpkg wrapper. For now we use the ESM build -->
-  <script type="module">
-    import { createNotionEditor } from './dist/notion-vibe-text-editor.es.js';
+  <!-- 3. Load the UMD script from local dist -->
+  <script src="./dist/notion-vibe-text-editor.umd.js"></script>
 
-    window.editorInstance = createNotionEditor('editor-root', {
+  <!-- Initialize the editor -->
+  <script>
+    // In UMD builds, our library is exported to the global 'NotionVibeTextEditor' object
+    const { createNotionEditor } = window.NotionVibeTextEditor;
+
+    const editorInstance = createNotionEditor('editor-root', {
       initialContent: "",
       onChange: (content) => {
-        console.log("Content updated:", JSON.parse(content));
+        console.log("Content changed:", content);
       },
-      uploadUrl: "https://httpbin.org/post",
-      aiStreamUrl: "/api/ai"
+      cloudinary: {
+        cloudName: "your-cloud-name",
+        uploadPreset: "your-unsigned-preset",
+      },
+      ai: {
+        streamUrl: "/api/ai/stream"
+      }
     });
+
+    // To destroy later:
+    // editorInstance.destroy();
   </script>
 </body>
+
 </html>

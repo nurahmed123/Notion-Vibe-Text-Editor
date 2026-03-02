@@ -74,7 +74,7 @@ export default function MyEditor() {
 
 ### 2. Vanilla JS / Laravel / HTML
 
-If you are not using React, you can render the editor into any DOM element using our Vanilla JS wrapper. It bundles and mounts the React roots natively.
+If you are not using React, you can render the editor into any DOM element using our Vanilla JS wrapper. Since React is a peer dependency, you need to load React and the UMD build via script tags.
 
 ```html
 <!DOCTYPE html>
@@ -82,17 +82,24 @@ If you are not using React, you can render the editor into any DOM element using
 <head>
   <meta charset="UTF-8">
   <title>Editor App</title>
-  <!-- Load styles -->
-  <link rel="stylesheet" href="/path/to/node_modules/notion-vibe-text-editor/dist/style.css">
+  
+  <!-- 1. Load React dependencies (Required) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- 2. Load editor styles and UMD script -->
+  <link rel="stylesheet" href="https://unpkg.com/notion-vibe-text-editor@latest/dist/style.css">
+  <script src="https://unpkg.com/notion-vibe-text-editor@latest/dist/notion-vibe-text-editor.umd.js"></script>
 </head>
 <body>
   
   <!-- Container where the editor will mount -->
-  <div id="editor-root"></div>
+  <div id="editor-root" style="min-height: 500px;"></div>
 
-  <!-- Load the script -->
-  <script type="module">
-    import { createNotionEditor } from '/path/to/node_modules/notion-vibe-text-editor/dist/notion-vibe-text-editor.es.js';
+  <!-- Initialize the editor -->
+  <script>
+    // The library exports to the global window.NotionVibeTextEditor object
+    const { createNotionEditor } = window.NotionVibeTextEditor;
 
     const editorInstance = createNotionEditor('editor-root', {
       initialContent: "",
@@ -103,19 +110,9 @@ If you are not using React, you can render the editor into any DOM element using
         cloudName: "your-cloud-name",
         uploadPreset: "your-unsigned-preset",
       },
-      // Option A: Connect to your backend
       ai: {
         streamUrl: "/api/ai/stream"
       }
-      
-      /* Option B: Direct Client-Side Configuration
-      ai: {
-        clientSide: {
-          apiKey: "sk-...",
-          model: "gpt-4o"
-        }
-      }
-      */
     });
 
     // To destroy later:
