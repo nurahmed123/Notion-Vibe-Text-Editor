@@ -1,6 +1,6 @@
 {
     "name": "notion-vibe-text-editor",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A universal rich text editor with BlockNote and Mantine, supporting React, Next.js, Laravel, and Vanilla HTML.",
     "main": "./dist/notion-vibe-text-editor.umd.js",
     "module": "./dist/notion-vibe-text-editor.es.js",
@@ -13,6 +13,11 @@
         },
         "./style.css": "./dist/style.css"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nurahmed123/Notion-Vibe-Text-Editor.git"
+    },
+    "homepage": "https://github.com/nurahmed123/Notion-Vibe-Text-Editor#readme",
     "files": [
         "dist"
     ],
