@@ -46,10 +46,20 @@ export default function MyEditor() {
         folder: "editor-uploads" // Optional
       }}
       
-      // Connect to your AI provider
+      // Option A: Connect to your backend AI provider (Recommended for production)
       ai={{
         streamUrl: "/api/ai/stream" // Path to your Vercel AI SDK or custom text streaming endpoint
       }}
+      
+      /* Option B: Direct Client-Side Configuration (For internal apps or local LLMs)
+      ai={{
+        clientSide: {
+          apiKey: "your-provider-api-key",
+          baseURL: "https://api.openai.com/v1", // Optional: defaults to OpenAI, can be changed to OpenRouter/Anthropic etc
+          model: "gpt-4o-mini"
+        }
+      }}
+      */
 
       // Set to true if you are not already using MantineProvider globally
       withMantineProvider={true} 
@@ -89,9 +99,19 @@ If you are not using React, you can render the editor into any DOM element using
         cloudName: "your-cloud-name",
         uploadPreset: "your-unsigned-preset",
       },
+      // Option A: Connect to your backend
       ai: {
         streamUrl: "/api/ai/stream"
       }
+      
+      /* Option B: Direct Client-Side Configuration
+      ai: {
+        clientSide: {
+          apiKey: "sk-...",
+          model: "gpt-4o"
+        }
+      }
+      */
     });
 
     // To destroy later:
@@ -110,7 +130,7 @@ If you are not using React, you can render the editor into any DOM element using
 | `editable` | `boolean` | `true` | Determine if the editor content can be edited. |
 | `cloudinary` | `{ cloudName: string, uploadPreset: string, folder?: string }` | `undefined` | Configuration to upload files directly to Cloudinary. Make sure to use an **unsigned** upload preset. |
 | `customUploadFile` | `(file: File) => Promise<string>` | `undefined` | Complete override for custom upload logic if not using Cloudinary. Must return the final absolute URL of the file explicitly. |
-| `ai` | `{ streamUrl?: string, customFetch?: typeof fetch }` | `{ streamUrl: "/api/ai/regular/streamText" }` | Configuration for the AI assistant block. Provide a backend endpoint using Vercel AI SDK compatible stream format, or optionally provide a completely custom `fetch` handler. |
+| `ai` | `{ streamUrl?: string, customFetch?: typeof fetch, clientSide?: { apiKey: string, baseURL?: string, model: string } }` | `{ streamUrl: "/api/ai/regular/streamText" }` | Configuration for the AI assistant block. Provide a backend endpoint using Vercel AI SDK compatible stream format (`streamUrl`), OR directly configure an OpenAI-compatible provider using the `clientSide` object (WARNING: exposes API keys on the frontend). |
 | `withMantineProvider` | `boolean` | `false` | In React environments, if you do not have `<MantineProvider>` set up in your app root, set this to `true` to wrap the editor in one correctly. Automatically `true` when initialized in vanilla JS. |
 
 ## License

@@ -38,8 +38,10 @@ import { codeBlockOptions } from "@blocknote/code-block";
 import {
     AIExtension,
     AIToolbarButton,
+    ClientSideTransport,
 } from "@blocknote/xl-ai";
 import { en as aiEn } from "@blocknote/xl-ai/locales";
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import React, { useRef, useEffect, useMemo, useState } from "react";
 import { Baseline, Check, ChevronDown, Minus, Plus, AlertTriangle } from "lucide-react";
 import { Menu, ActionIcon, Tooltip, Text, Group, Divider, TextInput, MantineProvider } from "@mantine/core";
@@ -62,8 +64,16 @@ export interface EditorProps {
 
     // Advanced AI Options
     ai?: {
-        streamUrl?: string; // Standard AI streaming URL
+        // Backend text streaming (via Vercel AI SDK style APIs)
+        streamUrl?: string;
         customFetch?: typeof fetch;
+
+        // OR: Direct Client-Side Configuration (No backend required)
+        clientSide?: {
+            apiKey: string;
+            baseURL?: string; // e.g. 'https://api.openai.com/v1', 'https://openrouter.ai/api/v1'
+            model: string;    // e.g. 'gpt-4o-mini', 'anthropic/claude-3.5-sonnet'
+        };
     };
 }
 
@@ -184,6 +194,25 @@ function EditorInner({
         }
     }, [initialContent]);
 
+    const aiTransport = useMemo(() => {
+        if (ai?.clientSide?.apiKey) {
+            // Setup direct client-side model using @ai-sdk/openai-compatible style provider
+            const model = createOpenAICompatible({
+                name: "custom-ai-provider",
+                apiKey: ai.clientSide.apiKey,
+                baseURL: ai.clientSide.baseURL || "https://api.openai.com/v1",
+            })(ai.clientSide.model);
+
+            return new ClientSideTransport({ model });
+        }
+
+        // Default or Fallback: Backend Streaming Transport
+        return {
+            api: ai?.streamUrl || "/api/ai/regular/streamText",
+            fetch: ai?.customFetch,
+        } as any;
+    }, [ai]);
+
     const editor = useCreateBlockNote({
         dictionary: {
             ...bnEn,
@@ -191,10 +220,7 @@ function EditorInner({
         },
         extensions: [
             AIExtension({
-                transport: {
-                    api: ai?.streamUrl || "/api/ai/regular/streamText",
-                    fetch: ai?.customFetch,
-                } as any,
+                transport: aiTransport,
             }),
         ],
         _tiptapOptions: {
