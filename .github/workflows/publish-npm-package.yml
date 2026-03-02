@@ -10,11 +10,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    
-    defaults:
-      run:
-        # Since your package is in a subfolder, we set the working directory
-        working-directory: './npm package'
 
     steps:
       - name: Checkout repository
