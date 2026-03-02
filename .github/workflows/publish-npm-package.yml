@@ -1,6 +1,11 @@
 name: Publish notion-vibe-text-editor to npm
 
 on:
+  # Trigger automatically when pushing to main or master
+  push:
+    branches:
+      - main
+      - master
   # Trigger when a GitHub Release is created
   release:
     types: [created]
