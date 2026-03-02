@@ -1,5 +1,9 @@
 # notion-vibe-text-editor
 
+[![NPM Version](https://img.shields.io/npm/v/notion-vibe-text-editor.svg)](https://www.npmjs.com/package/notion-vibe-text-editor)
+[![NPM Downloads](https://img.shields.io/npm/dt/notion-vibe-text-editor.svg)](https://www.npmjs.com/package/notion-vibe-text-editor)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 A premium, cross-framework rich text editor powered by [BlockNote](https://www.blocknotejs.org/) and Mantine. It provides a Notion-like editing experience with custom fonts, colors, slashing menus, and built-in AI streaming support.
 
 ## Features
@@ -135,4 +139,6 @@ If you are not using React, you can render the editor into any DOM element using
 
 ## License
 
-MIT
+[MIT License](LICENSE) © 2026 Md Nur Ahmad
+
+Feel free to use this in your commercial and personal projects!
