@@ -88,6 +88,10 @@ export default App;
 | `cloudinaryConfig` | `object` | `undefined` | Object containing `apiKey`, `apiSecret`, `cloudName`, and `folderName`. Needed for image/file uploads. |
 | `aiConfig` | `object` | `undefined` | Config to power the Slash menu AI functions. Contains `apiKey`, `modelName`, `apiBaseUrl`, and `proxyUrl`. |
 
+## Search Keywords
+
+react text editor, rich text editor, wysiwyg, notion clone, block editor, notion alternative, blocknote react, ai text editor, generative ai writing, cloudinary drag and drop, customizable typography, google fonts integration, mantine editor, react component
+
 ## License
 
 [MIT](https://github.com/nurahmed123/notion-vibe-text-editor/blob/main/LICENSE) © [Md Nur Ahmad](https://github.com/nurahmed123)

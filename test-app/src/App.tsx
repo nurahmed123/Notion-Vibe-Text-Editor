@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Editor } from 'notion-vibe-text-editor'
+import { Editor } from 'notion-vibe-text-editor';
 import { MantineProvider } from '@mantine/core'
 import '@mantine/core/styles.css'
 

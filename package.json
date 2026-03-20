@@ -1,7 +1,26 @@
 {
   "name": "notion-vibe-text-editor",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Notion-like text editor based on BlockNote with AI and Cloudinary support",
+  "keywords": [
+    "react",
+    "text-editor",
+    "rich-text-editor",
+    "wysiwyg",
+    "notion",
+    "notion-clone",
+    "block-editor",
+    "editor",
+    "react-editor",
+    "blocknote",
+    "cloudinary",
+    "ai-editor",
+    "generative-ai",
+    "react-component",
+    "mantine",
+    "Md Nur Ahmad",
+    "Md Nur"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/nurahmed123/Notion-Vibe-Text-Editor.git"
