@@ -1,7 +1,11 @@
 {
   "name": "notion-vibe-text-editor",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Notion-like text editor based on BlockNote with AI and Cloudinary support",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nurahmed123/notion-vibe-text-editor.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
