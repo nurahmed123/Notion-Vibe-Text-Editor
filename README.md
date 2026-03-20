@@ -1,5 +1,8 @@
 # notion-vibe-text-editor
 
+[![npm version](https://badge.fury.io/js/notion-vibe-text-editor.svg)](https://badge.fury.io/js/notion-vibe-text-editor)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A beautifully styled, Notion-like rich text editor for React applications. Built on top of [BlockNote](https://www.blocknotejs.org/), this package adds gorgeous custom fonts (Google Fonts integration), an advanced resizable font-size controller, drag-and-drop media uploads to Cloudinary, and AI integration for generative text editing out-of-the-box.
 
 ## Features
@@ -87,6 +90,19 @@ export default App;
 | `onSlugChange` | `(slug: string) => void` | `undefined` | Callback for when the Title/Slug changes. |
 | `cloudinaryConfig` | `object` | `undefined` | Object containing `apiKey`, `apiSecret`, `cloudName`, and `folderName`. Needed for image/file uploads. |
 | `aiConfig` | `object` | `undefined` | Config to power the Slash menu AI functions. Contains `apiKey`, `modelName`, `apiBaseUrl`, and `proxyUrl`. |
+
+## Contributing
+
+We strongly encourage and welcome contributions from the community! Whether it's expanding functionality, fixing bugs, or improving documentation, your help is appreciated. Feel free to open issues or submit pull requests.
+
+### 🖋️ How to Add More Fonts
+We want to expand the typography choices in this editor, and you can help by contributing your favorite Google Fonts! It's super easy to do:
+
+1. **Fork** this repository and clone it locally.
+2. **Locate the Font Data:** Open `src/components/FontFamilySelect.tsx` (or the respective font component file).
+3. **Add the Font:** Append your font's name and category to the existing list. *(The editor is configured to automatically download and serve Google Fonts dynamically based on this list!)*
+4. **Test Changes:** Run the development server in the `test-app` directory to see your new font live in action.
+5. **Submit a PR:** Push your branch and open a Pull Request so we can merge your awesome font into the next release!
 
 ## Search Keywords
 
