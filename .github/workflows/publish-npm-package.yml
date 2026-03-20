@@ -40,6 +40,8 @@ jobs:
             npm publish --access public
         env:
           # This connects the step to the token we'll create in GitHub secrets
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Setup Node.js for GitHub Packages
         uses: actions/setup-node@v4
         with:
