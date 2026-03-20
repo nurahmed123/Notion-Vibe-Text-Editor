@@ -1,0 +1,37 @@
+{
+  "name": "notion-vibe-text-editor",
+  "version": "1.0.0",
+  "description": "Notion-like text editor based on BlockNote with AI and Cloudinary support",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@ai-sdk/openai-compatible": "^2.0.31",
+    "@blocknote/code-block": "^0.46.2",
+    "@blocknote/core": "^0.46.2",
+    "@blocknote/mantine": "^0.46.2",
+    "@blocknote/react": "^0.46.2",
+    "@blocknote/xl-ai": "^0.46.2",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.563.0",
+    "tailwind-merge": "^3.4.0"
+  },
+  "peerDependencies": {
+    "@mantine/core": "^8.3.0",
+    "@mantine/hooks": "^8.3.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^3.4.19",
+    "tsup": "^8.0.2",
+    "typescript": "^5.0.0"
+  }
+}
