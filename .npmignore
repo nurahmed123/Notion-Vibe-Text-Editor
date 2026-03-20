@@ -1,0 +1,9 @@
+test-app/
+node_modules/
+src/
+tsup.config.ts
+tailwind.config.js
+tsconfig.json
+tsconfig.node.json
+*.log
+.DS_Store
