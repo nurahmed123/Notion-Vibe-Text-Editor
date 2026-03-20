@@ -13,10 +13,10 @@ A beautifully styled, Notion-like rich text editor for React applications. Built
 
 ## Installation
 
-You can install the editor via npm or yarn. Our editor leverages Mantine and TailwindCSS for styling.
+You can install the editor via npm or yarn. The package comes pre-packaged with all its layout and icon dependencies.
 
 ```bash
-npm install notion-vibe-text-editor @mantine/core @mantine/hooks @blocknote/core @blocknote/react lucide-react
+npm install notion-vibe-text-editor
 ```
 
 ## Setup
