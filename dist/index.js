@@ -40,7 +40,7 @@ function styleInject(css, { insertAt } = {}) {
 }
 
 // src/styles.css
-styleInject(".sticky {\n  position: sticky;\n}\n.top-0 {\n  top: 0px;\n}\n.z-10 {\n  z-index: 10;\n}\n.mx-0\\.5 {\n  margin-left: 0.125rem;\n  margin-right: 0.125rem;\n}\n.mx-1 {\n  margin-left: 0.25rem;\n  margin-right: 0.25rem;\n}\n.my-2 {\n  margin-top: 0.5rem;\n  margin-bottom: 0.5rem;\n}\n.mb-0\\.5 {\n  margin-bottom: 0.125rem;\n}\n.mb-4 {\n  margin-bottom: 1rem;\n}\n.ml-1 {\n  margin-left: 0.25rem;\n}\n.mt-1 {\n  margin-top: 0.25rem;\n}\n.block {\n  display: block;\n}\n.inline {\n  display: inline;\n}\n.flex {\n  display: flex;\n}\n.h-6 {\n  height: 1.5rem;\n}\n.max-h-\\[400px\\] {\n  max-height: 400px;\n}\n.min-h-0 {\n  min-height: 0px;\n}\n.min-h-\\[32px\\] {\n  min-height: 32px;\n}\n.min-h-\\[400px\\] {\n  min-height: 400px;\n}\n.min-h-\\[48px\\] {\n  min-height: 48px;\n}\n.w-auto {\n  width: auto;\n}\n.w-full {\n  width: 100%;\n}\n.w-px {\n  width: 1px;\n}\n.min-w-\\[32px\\] {\n  min-width: 32px;\n}\n.max-w-full {\n  max-width: 100%;\n}\n.flex-1 {\n  flex: 1 1 0%;\n}\n.cursor-pointer {\n  cursor: pointer;\n}\n.flex-row {\n  flex-direction: row;\n}\n.items-center {\n  align-items: center;\n}\n.gap-1 {\n  gap: 0.25rem;\n}\n.gap-4 {\n  gap: 1rem;\n}\n.self-center {\n  align-self: center;\n}\n.overflow-y-auto {\n  overflow-y: auto;\n}\n.rounded {\n  border-radius: 0.25rem;\n}\n.rounded-lg {\n  border-radius: 0.5rem;\n}\n.rounded-md {\n  border-radius: 0.375rem;\n}\n.rounded-sm {\n  border-radius: 0.125rem;\n}\n.border {\n  border-width: 1px;\n}\n.border-none {\n  border-style: none;\n}\n.border-slate-200 {\n  --tw-border-opacity: 1;\n  border-color: rgb(226 232 240 / var(--tw-border-opacity, 1));\n}\n.border-transparent {\n  border-color: transparent;\n}\n.bg-emerald-50 {\n  --tw-bg-opacity: 1;\n  background-color: rgb(236 253 245 / var(--tw-bg-opacity, 1));\n}\n.bg-slate-200 {\n  --tw-bg-opacity: 1;\n  background-color: rgb(226 232 240 / var(--tw-bg-opacity, 1));\n}\n.bg-slate-50\\/50 {\n  background-color: rgb(248 250 252 / 0.5);\n}\n.bg-transparent {\n  background-color: transparent;\n}\n.bg-white {\n  --tw-bg-opacity: 1;\n  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));\n}\n.p-1 {\n  padding: 0.25rem;\n}\n.px-1\\.5 {\n  padding-left: 0.375rem;\n  padding-right: 0.375rem;\n}\n.px-2 {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n.px-3 {\n  padding-left: 0.75rem;\n  padding-right: 0.75rem;\n}\n.px-4 {\n  padding-left: 1rem;\n  padding-right: 1rem;\n}\n.py-1 {\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.py-2 {\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n}\n.pb-0 {\n  padding-bottom: 0px;\n}\n.pb-20 {\n  padding-bottom: 5rem;\n}\n.pt-4 {\n  padding-top: 1rem;\n}\n.text-4xl {\n  font-size: 2.25rem;\n  line-height: 2.5rem;\n}\n.text-\\[10px\\] {\n  font-size: 10px;\n}\n.font-bold {\n  font-weight: 700;\n}\n.uppercase {\n  text-transform: uppercase;\n}\n.italic {\n  font-style: italic;\n}\n.tracking-widest {\n  letter-spacing: 0.1em;\n}\n.text-emerald-600 {\n  --tw-text-opacity: 1;\n  color: rgb(5 150 105 / var(--tw-text-opacity, 1));\n}\n.text-emerald-700 {\n  --tw-text-opacity: 1;\n  color: rgb(4 120 87 / var(--tw-text-opacity, 1));\n}\n.text-slate-600 {\n  --tw-text-opacity: 1;\n  color: rgb(71 85 105 / var(--tw-text-opacity, 1));\n}\n.text-slate-800 {\n  --tw-text-opacity: 1;\n  color: rgb(30 41 59 / var(--tw-text-opacity, 1));\n}\n.underline {\n  text-decoration-line: underline;\n}\n.placeholder-slate-300::-moz-placeholder {\n  --tw-placeholder-opacity: 1;\n  color: rgb(203 213 225 / var(--tw-placeholder-opacity, 1));\n}\n.placeholder-slate-300::placeholder {\n  --tw-placeholder-opacity: 1;\n  color: rgb(203 213 225 / var(--tw-placeholder-opacity, 1));\n}\n.opacity-40 {\n  opacity: 0.4;\n}\n.shadow {\n  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-\\[0_20px_50px_rgba\\(0\\,0\\,0\\,0\\.2\\)\\] {\n  --tw-shadow: 0 20px 50px rgba(0,0,0,0.2);\n  --tw-shadow-colored: 0 20px 50px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.outline-none {\n  outline: 2px solid transparent;\n  outline-offset: 2px;\n}\n.filter {\n  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);\n}\n.transition {\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    -webkit-backdrop-filter;\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    backdrop-filter;\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    backdrop-filter,\n    -webkit-backdrop-filter;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.transition-all {\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.transition-colors {\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.first\\:mt-0:first-child {\n  margin-top: 0px;\n}\n.last\\:hidden:last-child {\n  display: none;\n}\n.hover\\:border-slate-200:hover {\n  --tw-border-opacity: 1;\n  border-color: rgb(226 232 240 / var(--tw-border-opacity, 1));\n}\n.hover\\:bg-black\\/5:hover {\n  background-color: rgb(0 0 0 / 0.05);\n}\n.hover\\:bg-slate-100:hover {\n  --tw-bg-opacity: 1;\n  background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));\n}\n.hover\\:bg-slate-50:hover {\n  --tw-bg-opacity: 1;\n  background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1));\n}\n.hover\\:text-slate-900:hover {\n  --tw-text-opacity: 1;\n  color: rgb(15 23 42 / var(--tw-text-opacity, 1));\n}\n.active\\:scale-95:active {\n  --tw-scale-x: .95;\n  --tw-scale-y: .95;\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n");
+styleInject(".sticky {\n  position: sticky;\n}\n.top-0 {\n  top: 0px;\n}\n.z-10 {\n  z-index: 10;\n}\n.mx-0\\.5 {\n  margin-left: 0.125rem;\n  margin-right: 0.125rem;\n}\n.mx-1 {\n  margin-left: 0.25rem;\n  margin-right: 0.25rem;\n}\n.mx-auto {\n  margin-left: auto;\n  margin-right: auto;\n}\n.my-2 {\n  margin-top: 0.5rem;\n  margin-bottom: 0.5rem;\n}\n.mb-0\\.5 {\n  margin-bottom: 0.125rem;\n}\n.mb-6 {\n  margin-bottom: 1.5rem;\n}\n.ml-\\[54px\\] {\n  margin-left: 54px;\n}\n.mr-6 {\n  margin-right: 1.5rem;\n}\n.mt-1 {\n  margin-top: 0.25rem;\n}\n.mt-8 {\n  margin-top: 2rem;\n}\n.block {\n  display: block;\n}\n.inline {\n  display: inline;\n}\n.flex {\n  display: flex;\n}\n.h-6 {\n  height: 1.5rem;\n}\n.h-\\[26px\\] {\n  height: 26px;\n}\n.max-h-\\[400px\\] {\n  max-height: 400px;\n}\n.min-h-0 {\n  min-height: 0px;\n}\n.min-h-\\[32px\\] {\n  min-height: 32px;\n}\n.min-h-\\[400px\\] {\n  min-height: 400px;\n}\n.min-h-\\[48px\\] {\n  min-height: 48px;\n}\n.w-auto {\n  width: auto;\n}\n.w-full {\n  width: 100%;\n}\n.w-px {\n  width: 1px;\n}\n.min-w-\\[32px\\] {\n  min-width: 32px;\n}\n.max-w-4xl {\n  max-width: 56rem;\n}\n.max-w-full {\n  max-width: 100%;\n}\n.flex-1 {\n  flex: 1 1 0%;\n}\n.cursor-pointer {\n  cursor: pointer;\n}\n.flex-row {\n  flex-direction: row;\n}\n.items-center {\n  align-items: center;\n}\n.gap-1 {\n  gap: 0.25rem;\n}\n.gap-4 {\n  gap: 1rem;\n}\n.self-center {\n  align-self: center;\n}\n.overflow-visible {\n  overflow: visible;\n}\n.overflow-y-auto {\n  overflow-y: auto;\n}\n.rounded {\n  border-radius: 0.25rem;\n}\n.rounded-lg {\n  border-radius: 0.5rem;\n}\n.rounded-md {\n  border-radius: 0.375rem;\n}\n.rounded-none {\n  border-radius: 0px;\n}\n.rounded-sm {\n  border-radius: 0.125rem;\n}\n.rounded-xl {\n  border-radius: 0.75rem;\n}\n.rounded-l-none {\n  border-top-left-radius: 0px;\n  border-bottom-left-radius: 0px;\n}\n.border {\n  border-width: 1px;\n}\n.border-l {\n  border-left-width: 1px;\n}\n.border-r {\n  border-right-width: 1px;\n}\n.border-none {\n  border-style: none;\n}\n.border-slate-200\\/50 {\n  border-color: rgb(226 232 240 / 0.5);\n}\n.border-slate-200\\/60 {\n  border-color: rgb(226 232 240 / 0.6);\n}\n.bg-emerald-50 {\n  --tw-bg-opacity: 1;\n  background-color: rgb(236 253 245 / var(--tw-bg-opacity, 1));\n}\n.bg-slate-200 {\n  --tw-bg-opacity: 1;\n  background-color: rgb(226 232 240 / var(--tw-bg-opacity, 1));\n}\n.bg-slate-50\\/50 {\n  background-color: rgb(248 250 252 / 0.5);\n}\n.bg-transparent {\n  background-color: transparent;\n}\n.bg-white {\n  --tw-bg-opacity: 1;\n  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));\n}\n.bg-white\\/95 {\n  background-color: rgb(255 255 255 / 0.95);\n}\n.p-1 {\n  padding: 0.25rem;\n}\n.p-1\\.5 {\n  padding: 0.375rem;\n}\n.px-1\\.5 {\n  padding-left: 0.375rem;\n  padding-right: 0.375rem;\n}\n.px-2 {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n.px-3 {\n  padding-left: 0.75rem;\n  padding-right: 0.75rem;\n}\n.py-2 {\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n}\n.pb-0 {\n  padding-bottom: 0px;\n}\n.pb-32 {\n  padding-bottom: 8rem;\n}\n.text-5xl {\n  font-size: 3rem;\n  line-height: 1;\n}\n.text-\\[10px\\] {\n  font-size: 10px;\n}\n.font-extrabold {\n  font-weight: 800;\n}\n.uppercase {\n  text-transform: uppercase;\n}\n.italic {\n  font-style: italic;\n}\n.tracking-tight {\n  letter-spacing: -0.025em;\n}\n.tracking-widest {\n  letter-spacing: 0.1em;\n}\n.text-emerald-600 {\n  --tw-text-opacity: 1;\n  color: rgb(5 150 105 / var(--tw-text-opacity, 1));\n}\n.text-emerald-700 {\n  --tw-text-opacity: 1;\n  color: rgb(4 120 87 / var(--tw-text-opacity, 1));\n}\n.text-slate-600 {\n  --tw-text-opacity: 1;\n  color: rgb(71 85 105 / var(--tw-text-opacity, 1));\n}\n.text-slate-900 {\n  --tw-text-opacity: 1;\n  color: rgb(15 23 42 / var(--tw-text-opacity, 1));\n}\n.underline {\n  text-decoration-line: underline;\n}\n.placeholder-slate-200::-moz-placeholder {\n  --tw-placeholder-opacity: 1;\n  color: rgb(226 232 240 / var(--tw-placeholder-opacity, 1));\n}\n.placeholder-slate-200::placeholder {\n  --tw-placeholder-opacity: 1;\n  color: rgb(226 232 240 / var(--tw-placeholder-opacity, 1));\n}\n.opacity-40 {\n  opacity: 0.4;\n}\n.opacity-60 {\n  opacity: 0.6;\n}\n.shadow {\n  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-sm {\n  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);\n  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-xl {\n  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-slate-200\\/40 {\n  --tw-shadow-color: rgb(226 232 240 / 0.4);\n  --tw-shadow: var(--tw-shadow-colored) ;\n}\n.outline-none {\n  outline: 2px solid transparent;\n  outline-offset: 2px;\n}\n.filter {\n  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);\n}\n.backdrop-blur-md {\n  --tw-backdrop-blur: blur(12px);\n  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);\n  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);\n}\n.transition {\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    -webkit-backdrop-filter;\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    backdrop-filter;\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    backdrop-filter,\n    -webkit-backdrop-filter;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.transition-all {\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.transition-colors {\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.duration-200 {\n  transition-duration: 200ms;\n}\n.duration-300 {\n  transition-duration: 300ms;\n}\n.ease-in-out {\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n}\n.first\\:mt-0:first-child {\n  margin-top: 0px;\n}\n.last\\:hidden:last-child {\n  display: none;\n}\n.focus-within\\:bg-slate-50:focus-within {\n  --tw-bg-opacity: 1;\n  background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1));\n}\n.hover\\:-translate-y-0\\.5:hover {\n  --tw-translate-y: -0.125rem;\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n.hover\\:border-slate-300:hover {\n  --tw-border-opacity: 1;\n  border-color: rgb(203 213 225 / var(--tw-border-opacity, 1));\n}\n.hover\\:bg-black\\/5:hover {\n  background-color: rgb(0 0 0 / 0.05);\n}\n.hover\\:bg-slate-100:hover {\n  --tw-bg-opacity: 1;\n  background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));\n}\n.hover\\:bg-slate-50:hover {\n  --tw-bg-opacity: 1;\n  background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1));\n}\n.hover\\:text-slate-900:hover {\n  --tw-text-opacity: 1;\n  color: rgb(15 23 42 / var(--tw-text-opacity, 1));\n}\n.hover\\:shadow-md:hover {\n  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.focus\\:ring-0:focus {\n  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);\n  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow),\n    var(--tw-ring-shadow),\n    var(--tw-shadow, 0 0 #0000);\n}\n.active\\:scale-95:active {\n  --tw-scale-x: .95;\n  --tw-scale-y: .95;\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n");
 var alertTypes = [
   {
     title: "Warning",
@@ -9706,7 +9706,7 @@ function Editor({
       onSlugChange(val);
     }
   };
-  const FontSizeSelect = () => {
+  const FontSizeSelect = react$1.useCallback(() => {
     const sizes = [
       { label: "Small", value: "13px" },
       { label: "Normal", value: "16px" },
@@ -9715,47 +9715,119 @@ function Editor({
     ];
     const activeSize = editor.getActiveStyles()?.fontSize || "16px";
     const displaySize = activeSize.replace("px", "");
+    const [inputValue, setInputValue] = react$1.useState(displaySize);
+    react$1.useEffect(() => {
+      setInputValue(displaySize);
+    }, [displaySize]);
     const updateSize = (newSize) => {
       const sizeWithUnit = newSize.endsWith("px") ? newSize : `${newSize}px`;
       editor.addStyles({ fontSize: sizeWithUnit });
     };
-    return /* @__PURE__ */ jsxRuntime.jsx(core$1.Group, { gap: 0, className: "mx-1", children: /* @__PURE__ */ jsxRuntime.jsxs(core$1.Menu, { shadow: "xl", width: 180, position: "bottom", withArrow: true, transitionProps: { transition: "pop-top-left" }, children: [
-      /* @__PURE__ */ jsxRuntime.jsx(core$1.Menu.Target, { children: /* @__PURE__ */ jsxRuntime.jsx(core$1.Tooltip, { label: "Font Size", withArrow: true, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center px-2 py-1 mx-1 rounded hover:bg-slate-100 cursor-pointer border border-slate-200 transition-colors bg-white", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
-          core$1.TextInput,
-          {
-            variant: "unstyled",
-            size: "xs",
-            value: displaySize,
-            onChange: (e) => {
-              const val = e.currentTarget.value;
-              if (/^\d*$/.test(val)) {
-                if (val) updateSize(`${val}px`);
-              }
-            },
-            styles: {
-              input: { width: "24px", height: "20px", minHeight: "unset", textAlign: "center", fontWeight: 700, fontSize: "12px", padding: 0 }
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { size: 10, className: "opacity-40 ml-1" })
-      ] }) }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(core$1.Menu.Dropdown, { className: "bg-white border-slate-200 p-1 shadow-[0_20px_50px_rgba(0,0,0,0.2)]", children: sizes.map((size) => /* @__PURE__ */ jsxRuntime.jsx(
-        core$1.Menu.Item,
+    return /* @__PURE__ */ jsxRuntime.jsxs(core$1.Group, { gap: 0, className: "mx-1 items-center bg-white border border-slate-200/60 shadow-sm rounded-lg overflow-visible transition-all duration-200 hover:shadow-md hover:border-slate-300", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(core$1.Tooltip, { label: "Decrease Size", withArrow: true, children: /* @__PURE__ */ jsxRuntime.jsx(
+        core$1.ActionIcon,
         {
-          onClick: () => updateSize(size.value),
-          className: `rounded-md mb-0.5 transition-colors ${activeSize === size.value ? "bg-emerald-50 text-emerald-700" : "hover:bg-slate-50"}`,
-          rightSection: activeSize === size.value && /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { size: 12, className: "text-emerald-600" }),
-          children: /* @__PURE__ */ jsxRuntime.jsxs(core$1.Group, { justify: "space-between", gap: "xs", children: [
-            /* @__PURE__ */ jsxRuntime.jsx(core$1.Text, { size: "xs", fw: activeSize === size.value ? 700 : 500, children: size.label }),
-            /* @__PURE__ */ jsxRuntime.jsx(core$1.Text, { size: "xs", color: "dimmed", fw: 400, children: size.value })
-          ] })
-        },
-        size.value
-      )) })
-    ] }) });
-  };
-  const FontFamilySelect = () => {
+          size: "sm",
+          variant: "subtle",
+          color: "gray",
+          onMouseDown: (e) => e.preventDefault(),
+          onClick: () => {
+            const current = parseInt(inputValue) || 16;
+            const newSize = Math.max(8, current - 1);
+            setInputValue(newSize.toString());
+            updateSize(`${newSize}px`);
+          },
+          className: "rounded-none hover:bg-slate-100 px-1.5 h-[26px] border-r border-slate-200/50 text-slate-600 active:scale-95",
+          children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Minus, { size: 12, strokeWidth: 2.5 })
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntime.jsx(core$1.Tooltip, { label: "Type exact size", withArrow: true, children: /* @__PURE__ */ jsxRuntime.jsx("div", { children: /* @__PURE__ */ jsxRuntime.jsx(
+        core$1.TextInput,
+        {
+          variant: "unstyled",
+          value: inputValue,
+          onChange: (e) => {
+            setInputValue(e.currentTarget.value);
+          },
+          onKeyDown: (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              const val = e.currentTarget.value;
+              if (/^\d*$/.test(val) && val) {
+                setInputValue(val);
+                updateSize(`${val}px`);
+              }
+            }
+          },
+          onBlur: (e) => {
+            const val = e.currentTarget.value;
+            if (/^\d*$/.test(val) && val) {
+              updateSize(`${val}px`);
+            } else {
+              setInputValue(displaySize);
+            }
+          },
+          styles: {
+            input: {
+              width: "32px",
+              height: "26px",
+              minHeight: "unset",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "13px",
+              padding: 0,
+              color: "#334155"
+            }
+          },
+          className: "bg-transparent focus-within:bg-slate-50 transition-colors"
+        }
+      ) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(core$1.Tooltip, { label: "Increase Size", withArrow: true, children: /* @__PURE__ */ jsxRuntime.jsx(
+        core$1.ActionIcon,
+        {
+          size: "sm",
+          variant: "subtle",
+          color: "gray",
+          onMouseDown: (e) => e.preventDefault(),
+          onClick: () => {
+            const current = parseInt(inputValue) || 16;
+            const newSize = Math.min(200, current + 1);
+            setInputValue(newSize.toString());
+            updateSize(`${newSize}px`);
+          },
+          className: "rounded-none hover:bg-slate-100 px-1.5 h-[26px] border-l border-slate-200/50 text-slate-600 active:scale-95",
+          children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { size: 12, strokeWidth: 2.5 })
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntime.jsxs(core$1.Menu, { shadow: "xl", width: 180, position: "bottom-start", withArrow: true, transitionProps: { transition: "pop-top-left" }, children: [
+        /* @__PURE__ */ jsxRuntime.jsx(core$1.Menu.Target, { children: /* @__PURE__ */ jsxRuntime.jsx(
+          core$1.ActionIcon,
+          {
+            size: "sm",
+            variant: "subtle",
+            color: "gray",
+            onMouseDown: (e) => e.preventDefault(),
+            className: "rounded-l-none hover:bg-slate-100 px-1.5 h-[26px] border-l border-slate-200/50 bg-slate-50/50",
+            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { size: 12, strokeWidth: 2.5, className: "opacity-60" })
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntime.jsx(core$1.Menu.Dropdown, { className: "bg-white/95 backdrop-blur-md border-slate-200/60 p-1.5 rounded-xl shadow-xl shadow-slate-200/40", children: sizes.map((size) => /* @__PURE__ */ jsxRuntime.jsx(
+          core$1.Menu.Item,
+          {
+            onClick: () => updateSize(size.value),
+            className: `rounded-md mb-0.5 transition-colors ${activeSize === size.value ? "bg-emerald-50 text-emerald-700" : "hover:bg-slate-50"}`,
+            rightSection: activeSize === size.value && /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { size: 12, className: "text-emerald-600" }),
+            children: /* @__PURE__ */ jsxRuntime.jsxs(core$1.Group, { justify: "space-between", gap: "xs", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(core$1.Text, { size: "xs", fw: activeSize === size.value ? 700 : 500, children: size.label }),
+              /* @__PURE__ */ jsxRuntime.jsx(core$1.Text, { size: "xs", color: "dimmed", fw: 400, children: size.value })
+            ] })
+          },
+          size.value
+        )) })
+      ] })
+    ] });
+  }, [editor]);
+  const FontFamilySelect = react$1.useCallback(() => {
     const families = [
       // Sans-Serif
       { label: "Inter", value: "'Inter', sans-serif", group: "Sans Serif" },
@@ -9943,14 +10015,14 @@ function Editor({
           variant: "subtle",
           color: "gray",
           size: "lg",
-          className: "hover:bg-slate-100 hover:text-slate-900 transition-all active:scale-95 flex items-center gap-1 w-auto px-1.5 mx-0.5 border border-transparent hover:border-slate-200",
+          className: "hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-1 w-auto px-2 mx-0.5 border border-slate-200/60 shadow-sm bg-white hover:shadow-md hover:-translate-y-0.5 rounded-lg",
           children: [
             /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Baseline, { size: 18, className: activeFamily !== "'Inter', sans-serif" ? "text-emerald-600" : "text-slate-600" }),
             /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { size: 10, className: "opacity-40" })
           ]
         }
       ) }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(core$1.Menu.Dropdown, { className: "bg-white border-slate-200 max-h-[400px] overflow-y-auto p-1 shadow-[0_20px_50px_rgba(0,0,0,0.2)]", children: groups.map((group) => /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(core$1.Menu.Dropdown, { className: "bg-white/95 backdrop-blur-md border-slate-200/60 max-h-[400px] overflow-y-auto p-1.5 rounded-xl shadow-xl shadow-slate-200/40", children: groups.map((group) => /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntime.jsx(core$1.Text, { size: "xs", fw: 700, color: "dimmed", px: "sm", py: 6, className: "uppercase tracking-widest text-[10px] bg-slate-50/50 rounded mt-1 first:mt-0 sticky top-0 z-10", children: group }),
         families.filter((f) => f.group === group).map((family) => /* @__PURE__ */ jsxRuntime.jsx(
           core$1.Menu.Item,
@@ -9965,8 +10037,10 @@ function Editor({
         /* @__PURE__ */ jsxRuntime.jsx(core$1.Divider, { size: "xs", color: "slate.1", my: 4, className: "last:hidden" })
       ] }, group)) })
     ] });
-  };
-  const CustomFormattingToolbar = () => {
+  }, [editor]);
+  const aiConfigStr = JSON.stringify(aiConfig);
+  const CustomFormattingToolbar = react$1.useCallback(() => {
+    const config = aiConfigStr ? JSON.parse(aiConfigStr) : void 0;
     const selectedBlocks = react.useSelectedBlocks(editor);
     const isMedia = selectedBlocks.length === 1 && (selectedBlocks[0].type === "image" || selectedBlocks[0].type === "video" || selectedBlocks[0].type === "audio" || selectedBlocks[0].type === "file");
     return /* @__PURE__ */ jsxRuntime.jsx(react.FormattingToolbar, { children: isMedia ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -9981,7 +10055,7 @@ function Editor({
       /* @__PURE__ */ jsxRuntime.jsx(react.TextAlignButton, { textAlignment: "center" }, "textAlignCenterButton"),
       /* @__PURE__ */ jsxRuntime.jsx(react.TextAlignButton, { textAlignment: "right" }, "textAlignRightButton")
     ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-      aiConfig?.apiKey && /* @__PURE__ */ jsxRuntime.jsx(xlAi.AIToolbarButton, {}),
+      config?.apiKey && /* @__PURE__ */ jsxRuntime.jsx(xlAi.AIToolbarButton, {}),
       /* @__PURE__ */ jsxRuntime.jsx(
         react.BlockTypeSelect,
         {
@@ -10012,14 +10086,14 @@ function Editor({
       /* @__PURE__ */ jsxRuntime.jsx(react.NestBlockButton, {}, "nestBlockButton"),
       /* @__PURE__ */ jsxRuntime.jsx(react.CreateLinkButton, {}, "createLinkButton")
     ] }) });
-  };
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: editable ? "min-h-[400px] pb-20" : "min-h-0 pb-0", children: [
-    showSlug && editable && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mb-4", children: /* @__PURE__ */ jsxRuntime.jsx(
+  }, [editor, aiConfigStr, FontSizeSelect, FontFamilySelect]);
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: `bn-wrapper w-full max-w-4xl mx-auto transition-all duration-300 ease-in-out ${editable ? "min-h-[400px] pb-32" : "min-h-0 pb-0"}`, children: [
+    showSlug && editable && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mt-8 mb-6 ml-[54px] mr-6", children: /* @__PURE__ */ jsxRuntime.jsx(
       "input",
       {
         type: "text",
-        className: "w-full text-4xl font-bold bg-transparent outline-none border-none placeholder-slate-300 text-slate-800 px-4 pt-4",
-        placeholder: "Document slug...",
+        className: "w-full text-5xl font-extrabold tracking-tight bg-transparent outline-none border-none placeholder-slate-200 text-slate-900 focus:ring-0",
+        placeholder: "Document title...",
         value: slug,
         onChange: handleSlugChange
       }

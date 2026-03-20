@@ -8,9 +8,9 @@ function App() {
 
   return (
     <MantineProvider>
-      <div style={{ maxWidth: 800, margin: '40px auto', padding: 20 }}>
-        <h1 style={{ fontFamily: 'sans-serif' }}>Editor Test</h1>
-        <div style={{ border: '1px solid #ccc', borderRadius: 8 }}>
+      <div style={{ maxWidth: 1000, margin: '40px auto', padding: 20 }}>
+        <h1 style={{ fontFamily: 'sans-serif', textAlign: 'center', marginBottom: '20px', color: '#333' }}>Editor Test</h1>
+        <div style={{ backgroundColor: '#fff', borderRadius: 16, padding: '20px 0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', border: '1px solid #f1f5f9' }}>
           <Editor 
             initialContent={""}
             onChange={(val) => setContent(val)} 

@@ -48,7 +48,7 @@ import {
 } from "@blocknote/xl-ai";
 import { en as aiEn } from "@blocknote/xl-ai/locales";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
-import { useRef, useEffect, useMemo, useState } from "react";
+import { useRef, useEffect, useMemo, useState, useCallback } from "react";
 import { Baseline, Check, ChevronDown, Minus, Plus, AlertTriangle } from "lucide-react";
 import { Menu, ActionIcon, Tooltip, Text, Group, Divider, TextInput } from "@mantine/core";
 import { Alert } from "./Alert";
@@ -495,7 +495,7 @@ export function Editor({
   };
 
   // Selectors for font size and font family omitted here for brevity, but I need to include them
-  const FontSizeSelect = () => {
+  const FontSizeSelect = useCallback(() => {
     const sizes = [
       { label: "Small", value: "13px" },
       { label: "Normal", value: "16px" },
@@ -504,36 +504,112 @@ export function Editor({
     ];
     const activeSize = (editor as any).getActiveStyles()?.fontSize || "16px";
     const displaySize = activeSize.replace("px", "");
+    const [inputValue, setInputValue] = useState(displaySize);
+
+    useEffect(() => {
+      setInputValue(displaySize);
+    }, [displaySize]);
+
     const updateSize = (newSize: string) => {
       const sizeWithUnit = newSize.endsWith("px") ? newSize : `${newSize}px`;
       (editor as any).addStyles({ fontSize: sizeWithUnit });
     };
 
     return (
-      <Group gap={0} className="mx-1">
-        <Menu shadow="xl" width={180} position="bottom" withArrow transitionProps={{ transition: 'pop-top-left' }}>
+      <Group gap={0} className="mx-1 items-center bg-white border border-slate-200/60 shadow-sm rounded-lg overflow-visible transition-all duration-200 hover:shadow-md hover:border-slate-300">
+        <Tooltip label="Decrease Size" withArrow>
+          <ActionIcon 
+            size="sm" 
+            variant="subtle" 
+            color="gray" 
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => {
+              const current = parseInt(inputValue) || 16;
+              const newSize = Math.max(8, current - 1);
+              setInputValue(newSize.toString());
+              updateSize(`${newSize}px`);
+              // Let the editor regain focus if we want, but since onMouseDown preventDefault is there, it should keep it.
+            }} 
+            className="rounded-none hover:bg-slate-100 px-1.5 h-[26px] border-r border-slate-200/50 text-slate-600 active:scale-95"
+          >
+            <Minus size={12} strokeWidth={2.5} />
+          </ActionIcon>
+        </Tooltip>
+        
+        <Tooltip label="Type exact size" withArrow>
+          <div>
+            <TextInput
+              variant="unstyled"
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.currentTarget.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  const val = e.currentTarget.value;
+                  if (/^\d*$/.test(val) && val) {
+                    setInputValue(val);
+                    updateSize(`${val}px`);
+                  }
+                }
+              }}
+              onBlur={(e) => {
+                const val = e.currentTarget.value;
+                if (/^\d*$/.test(val) && val) {
+                  updateSize(`${val}px`);
+                } else {
+                  setInputValue(displaySize);
+                }
+              }}
+              styles={{
+                input: { 
+                  width: '32px', 
+                  height: '26px', 
+                  minHeight: 'unset', 
+                  textAlign: 'center', 
+                  fontWeight: 600, 
+                  fontSize: '13px', 
+                  padding: 0,
+                  color: '#334155'
+                }
+              }}
+              className="bg-transparent focus-within:bg-slate-50 transition-colors"
+            />
+          </div>
+        </Tooltip>
+        
+        <Tooltip label="Increase Size" withArrow>
+          <ActionIcon 
+            size="sm" 
+            variant="subtle" 
+            color="gray" 
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => {
+              const current = parseInt(inputValue) || 16;
+              const newSize = Math.min(200, current + 1);
+              setInputValue(newSize.toString());
+              updateSize(`${newSize}px`);
+            }} 
+            className="rounded-none hover:bg-slate-100 px-1.5 h-[26px] border-l border-slate-200/50 text-slate-600 active:scale-95"
+          >
+            <Plus size={12} strokeWidth={2.5} />
+          </ActionIcon>
+        </Tooltip>
+        
+        <Menu shadow="xl" width={180} position="bottom-start" withArrow transitionProps={{ transition: 'pop-top-left' }}>
           <Menu.Target>
-            <Tooltip label="Font Size" withArrow>
-              <div className="flex items-center px-2 py-1 mx-1 rounded hover:bg-slate-100 cursor-pointer border border-slate-200 transition-colors bg-white">
-                <TextInput
-                  variant="unstyled"
-                  size="xs"
-                  value={displaySize}
-                  onChange={(e) => {
-                    const val = e.currentTarget.value;
-                    if (/^\d*$/.test(val)) {
-                      if (val) updateSize(`${val}px`);
-                    }
-                  }}
-                  styles={{
-                    input: { width: '24px', height: '20px', minHeight: 'unset', textAlign: 'center', fontWeight: 700, fontSize: '12px', padding: 0 }
-                  }}
-                />
-                <ChevronDown size={10} className="opacity-40 ml-1" />
-              </div>
-            </Tooltip>
+            <ActionIcon 
+              size="sm" 
+              variant="subtle" 
+              color="gray" 
+              onMouseDown={(e) => e.preventDefault()}
+              className="rounded-l-none hover:bg-slate-100 px-1.5 h-[26px] border-l border-slate-200/50 bg-slate-50/50"
+            >
+              <ChevronDown size={12} strokeWidth={2.5} className="opacity-60" />
+            </ActionIcon>
           </Menu.Target>
-          <Menu.Dropdown className="bg-white border-slate-200 p-1 shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
+          <Menu.Dropdown className="bg-white/95 backdrop-blur-md border-slate-200/60 p-1.5 rounded-xl shadow-xl shadow-slate-200/40">
             {sizes.map((size) => (
               <Menu.Item
                 key={size.value}
@@ -551,9 +627,9 @@ export function Editor({
         </Menu>
       </Group>
     );
-  };
+  }, [editor]);
 
-  const FontFamilySelect = () => {
+  const FontFamilySelect = useCallback(() => {
     const families = [
      // Sans-Serif
       { label: "Inter", value: "'Inter', sans-serif", group: "Sans Serif" },
@@ -752,14 +828,14 @@ export function Editor({
               variant="subtle"
               color="gray"
               size="lg"
-              className="hover:bg-slate-100 hover:text-slate-900 transition-all active:scale-95 flex items-center gap-1 w-auto px-1.5 mx-0.5 border border-transparent hover:border-slate-200"
+              className="hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 ease-in-out active:scale-95 flex items-center gap-1 w-auto px-2 mx-0.5 border border-slate-200/60 shadow-sm bg-white hover:shadow-md hover:-translate-y-0.5 rounded-lg"
             >
               <Baseline size={18} className={activeFamily !== "'Inter', sans-serif" ? "text-emerald-600" : "text-slate-600"} />
               <ChevronDown size={10} className="opacity-40" />
             </ActionIcon>
           </Tooltip>
         </Menu.Target>
-        <Menu.Dropdown className="bg-white border-slate-200 max-h-[400px] overflow-y-auto p-1 shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
+        <Menu.Dropdown className="bg-white/95 backdrop-blur-md border-slate-200/60 max-h-[400px] overflow-y-auto p-1.5 rounded-xl shadow-xl shadow-slate-200/40">
           {groups.map((group) => (
             <div key={group}>
               <Text size="xs" fw={700} color="dimmed" px="sm" py={6} className="uppercase tracking-widest text-[10px] bg-slate-50/50 rounded mt-1 first:mt-0 sticky top-0 z-10">{group}</Text>
@@ -779,9 +855,11 @@ export function Editor({
         </Menu.Dropdown>
       </Menu>
     );
-  };
+  }, [editor]);
 
-  const CustomFormattingToolbar = () => {
+  const aiConfigStr = JSON.stringify(aiConfig);
+  const CustomFormattingToolbar = useCallback(() => {
+    const config = aiConfigStr ? JSON.parse(aiConfigStr) : undefined;
     const selectedBlocks = useSelectedBlocks(editor);
     const isMedia =
       selectedBlocks.length === 1 &&
@@ -807,7 +885,7 @@ export function Editor({
           </>
         ) : (
           <>
-            {aiConfig?.apiKey && <AIToolbarButton />}
+            {config?.apiKey && <AIToolbarButton />}
             <BlockTypeSelect
               key={"blockTypeSelect"}
               items={[
@@ -838,16 +916,16 @@ export function Editor({
         )}
       </FormattingToolbar>
     );
-  };
+  }, [editor, aiConfigStr, FontSizeSelect, FontFamilySelect]);
 
   return (
-    <div className={editable ? "min-h-[400px] pb-20" : "min-h-0 pb-0"}>
+    <div className={`bn-wrapper w-full max-w-4xl mx-auto transition-all duration-300 ease-in-out ${editable ? "min-h-[400px] pb-32" : "min-h-0 pb-0"}`}>
       {showSlug && editable && (
-        <div className="mb-4">
+        <div className="mt-8 mb-6 ml-[54px] mr-6">
           <input
             type="text"
-            className="w-full text-4xl font-bold bg-transparent outline-none border-none placeholder-slate-300 text-slate-800 px-4 pt-4"
-            placeholder="Document slug..."
+            className="w-full text-5xl font-extrabold tracking-tight bg-transparent outline-none border-none placeholder-slate-200 text-slate-900 focus:ring-0"
+            placeholder="Document title..."
             value={slug}
             onChange={handleSlugChange}
           />
