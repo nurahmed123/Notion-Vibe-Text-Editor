@@ -1,7 +1,7 @@
 {
   "name": "notion-vibe-text-editor",
-  "version": "2.0.7",
-  "description": "Notion-like text editor based on BlockNote with AI and Cloudinary support by Md Nurahmed",
+  "version": "3.0.0",
+  "description": "Notion-like rich text editor for React with AI writing, voice typing, Cloudinary media, 150+ Google Fonts, and block-based editing — by Md Nurahmed",
   "keywords": [
     "react",
     "text-editor",
@@ -18,8 +18,12 @@
     "generative-ai",
     "react-component",
     "mantine",
-    "Md Nur Ahmad",
-    "Md Nur"
+    "voice-typing",
+    "speech-to-text",
+    "google-fonts",
+    "drag-and-drop",
+    "media-upload",
+    "Md Nur Ahmad"
   ],
   "repository": {
     "type": "git",

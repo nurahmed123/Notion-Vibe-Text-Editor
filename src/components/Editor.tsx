@@ -49,7 +49,7 @@ import {
 import { en as aiEn } from "@blocknote/xl-ai/locales";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import { useRef, useEffect, useMemo, useState, useCallback } from "react";
-import { Baseline, Check, ChevronDown, Minus, Plus, AlertTriangle } from "lucide-react";
+import { Baseline, Check, ChevronDown, Minus, Plus, AlertTriangle, Mic, RefreshCw } from "lucide-react";
 import { Menu, ActionIcon, Tooltip, Text, Group, Divider, TextInput } from "@mantine/core";
 import { Alert } from "./Alert";
 import { ArrowConversionExtension } from "./ArrowConversionExtension";
@@ -60,6 +60,7 @@ export interface EditorProps {
   editable?: boolean;
   showSlug?: boolean;
   onSlugChange?: (slug: string) => void;
+  onTitleChange?: (title: string) => void;
   cloudinaryConfig?: {
     apiKey: string;
     apiSecret: string;
@@ -225,10 +226,49 @@ export function Editor({
   editable = true,
   showSlug = false,
   onSlugChange,
+  onTitleChange,
   cloudinaryConfig,
   aiConfig,
 }: EditorProps) {
   const [slug, setSlug] = useState("");
+  const [title, setTitle] = useState("");
+  const [isListening, setIsListening] = useState(false);
+  const [voiceLang, setVoiceLang] = useState("en-US");
+  const voiceLangRef = useRef("en-US");
+  const recognitionRef = useRef<any>(null);
+
+  const voiceLanguages = useMemo(() => [
+    { code: "en-US", label: "🇺🇸 English" },
+    { code: "bn-BD", label: "🇧🇩 বাংলা" },
+    { code: "hi-IN", label: "🇮🇳 हिन्दी" },
+    { code: "ar-SA", label: "🇸🇦 العربية" },
+    { code: "es-ES", label: "🇪🇸 Español" },
+    { code: "fr-FR", label: "🇫🇷 Français" },
+    { code: "de-DE", label: "🇩🇪 Deutsch" },
+    { code: "pt-BR", label: "🇧🇷 Português" },
+    { code: "ru-RU", label: "🇷🇺 Русский" },
+    { code: "zh-CN", label: "🇨🇳 中文" },
+    { code: "ja-JP", label: "🇯🇵 日本語" },
+    { code: "ko-KR", label: "🇰🇷 한국어" },
+    { code: "tr-TR", label: "🇹🇷 Türkçe" },
+    { code: "ur-PK", label: "🇵🇰 اردو" },
+    { code: "it-IT", label: "🇮🇹 Italiano" },
+    { code: "nl-NL", label: "🇳🇱 Nederlands" },
+    { code: "pl-PL", label: "🇵🇱 Polski" },
+    { code: "sv-SE", label: "🇸🇪 Svenska" },
+    { code: "th-TH", label: "🇹🇭 ไทย" },
+    { code: "vi-VN", label: "🇻🇳 Tiếng Việt" },
+    { code: "ms-MY", label: "🇲🇾 Bahasa Melayu" },
+    { code: "id-ID", label: "🇮🇩 Bahasa Indonesia" },
+    { code: "ta-IN", label: "🇮🇳 தமிழ்" },
+    { code: "te-IN", label: "🇮🇳 తెలుగు" },
+    { code: "fil-PH", label: "🇵🇭 Filipino" },
+    { code: "uk-UA", label: "🇺🇦 Українська" },
+    { code: "el-GR", label: "🇬🇷 Ελληνικά" },
+    { code: "he-IL", label: "🇮🇱 עברית" },
+    { code: "fa-IR", label: "🇮🇷 فارسی" },
+    { code: "sw-KE", label: "🇰🇪 Kiswahili" },
+  ], []);
 
   const extractMediaUrls = (blocks: Block[]): string[] => {
     const urls: string[] = [];
@@ -587,11 +627,116 @@ export function Editor({
     onChange(JSON.stringify(currentBlocks, null, 2));
   };
 
+  // Voice Typing
+  const startVoiceTyping = useCallback((langOverride?: string) => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Your browser does not support Voice Typing. Please use Chrome, Edge, or Safari.");
+      return;
+    }
+
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      recognitionRef.current = null;
+      setIsListening(false);
+      return;
+    }
+
+    const lang = langOverride || voiceLangRef.current;
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 1;
+    recognition.lang = lang;
+
+    let finalTranscript = "";
+
+    recognition.onresult = (event: any) => {
+      let interim = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript;
+          // Insert finalized text at cursor
+          const currentBlock = editor.getTextCursorPosition().block;
+          if (currentBlock) {
+            editor.insertInlineContent([{ type: "text", text: transcript, styles: {} }]);
+          }
+        } else {
+          interim = transcript;
+        }
+      }
+    };
+
+    recognition.onerror = (event: any) => {
+      console.error("[VoiceTyping] Error:", event.error);
+      if (event.error !== "no-speech") {
+        setIsListening(false);
+        recognitionRef.current = null;
+      }
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+      recognitionRef.current = null;
+    };
+
+    recognition.start();
+    recognitionRef.current = recognition;
+    setIsListening(true);
+  }, [editor]);
+
+  const stopVoiceTyping = useCallback(() => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      recognitionRef.current = null;
+      setIsListening(false);
+    }
+  }, []);
+
+  const voiceTypingItem = useMemo(() => ({
+    title: "Voice Typing",
+    onItemClick: () => {
+      startVoiceTyping();
+    },
+    aliases: ["voice", "speech", "dictation", "mic", "microphone", "speak"],
+    group: "Media",
+    icon: <Mic size={18} />,
+    subtext: "Speak to type using your microphone",
+  }), [startVoiceTyping]);
+
   const handleSlugChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
+    const val = e.target.value
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "")
+      .replace(/-+/g, "-");
     setSlug(val);
     if (onSlugChange) {
       onSlugChange(val);
+    }
+  };
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setTitle(val);
+    if (onTitleChange) {
+      onTitleChange(val);
+    }
+  };
+
+  const generateSlugFromTitle = () => {
+    if (title) {
+      const generated = title
+        .toLowerCase()
+        .replace(/[^\w\s-]+/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-+|-+$/g, "");
+      setSlug(generated);
+      if (onSlugChange) {
+        onSlugChange(generated);
+      }
     }
   };
 
@@ -1020,16 +1165,207 @@ export function Editor({
   }, [editor, aiConfigStr, FontSizeSelect, FontFamilySelect]);
 
   return (
-    <div className={`bn-wrapper w-full max-w-4xl mx-auto transition-all duration-300 ease-in-out ${editable ? "min-h-[400px] pb-32" : "min-h-0 pb-0"}`}>
+    <div className={`bn-wrapper w-full max-w-4xl mx-auto transition-all duration-300 ease-in-out ${editable ? "min-h-[400px] pb-32" : "min-h-0 pb-0"}`} style={{ position: 'relative' }}>
+      {/* Voice Typing Indicator */}
+      {isListening && (
+        <div
+          style={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px',
+            padding: '10px 20px',
+            background: 'linear-gradient(135deg, #ef4444, #dc2626)',
+            borderRadius: '12px',
+            margin: '0 16px 12px 16px',
+            boxShadow: '0 4px 15px rgba(239, 68, 68, 0.4)',
+            animation: 'voicePulse 2s ease-in-out infinite',
+          }}
+        >
+          <style>{`
+            @keyframes voicePulse {
+              0%, 100% { box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); }
+              50% { box-shadow: 0 4px 25px rgba(239, 68, 68, 0.7); }
+            }
+            @keyframes micBounce {
+              0%, 100% { transform: scale(1); }
+              50% { transform: scale(1.2); }
+            }
+          `}</style>
+          <Mic
+            size={20}
+            color="white"
+            style={{ animation: 'micBounce 1s ease-in-out infinite' }}
+          />
+          <span style={{ color: 'white', fontFamily: 'Inter, system-ui, sans-serif', fontWeight: 600, fontSize: '14px', letterSpacing: '0.5px' }}>
+            Listening...
+          </span>
+          <select
+            value={voiceLang}
+            onChange={(e) => {
+              const newLang = e.target.value;
+              setVoiceLang(newLang);
+              voiceLangRef.current = newLang;
+              // Restart recognition with new language immediately
+              if (recognitionRef.current) {
+                recognitionRef.current.stop();
+                recognitionRef.current = null;
+                setIsListening(false);
+                setTimeout(() => startVoiceTyping(newLang), 200);
+              }
+            }}
+            style={{
+              padding: '4px 8px',
+              background: 'rgba(255,255,255,0.2)',
+              border: '1px solid rgba(255,255,255,0.4)',
+              borderRadius: '8px',
+              color: 'white',
+              fontFamily: 'Inter, system-ui, sans-serif',
+              fontWeight: 600,
+              fontSize: '13px',
+              cursor: 'pointer',
+              backdropFilter: 'blur(4px)',
+              outline: 'none',
+              appearance: 'none' as const,
+              WebkitAppearance: 'none' as const,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 6px center',
+              paddingRight: '24px',
+            }}
+          >
+            {voiceLanguages.map((lang) => (
+              <option key={lang.code} value={lang.code} style={{ color: '#333', background: 'white' }}>
+                {lang.label}
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={stopVoiceTyping}
+            style={{
+              padding: '4px 14px',
+              background: 'rgba(255,255,255,0.25)',
+              border: '1px solid rgba(255,255,255,0.5)',
+              borderRadius: '8px',
+              color: 'white',
+              fontFamily: 'Inter, system-ui, sans-serif',
+              fontWeight: 600,
+              fontSize: '13px',
+              cursor: 'pointer',
+              backdropFilter: 'blur(4px)',
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.4)')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.25)')}
+          >
+            Stop
+          </button>
+        </div>
+      )}
       {showSlug && editable && (
-        <div className="mt-8 mb-6 ml-[54px] mr-6">
+        <div style={{ padding: '0 16px', marginBottom: '8px' }}>
+          {/* Title Input */}
           <input
             type="text"
-            className="w-full text-5xl font-extrabold tracking-tight bg-transparent outline-none border-none placeholder-slate-200 text-slate-900 focus:ring-0"
-            placeholder="Document title..."
-            value={slug}
-            onChange={handleSlugChange}
+            placeholder="Enter a catchy title..."
+            value={title}
+            onChange={handleTitleChange}
+            style={{
+              width: '100%',
+              fontSize: 'clamp(28px, 5vw, 48px)',
+              fontWeight: 900,
+              fontFamily: 'Inter, system-ui, sans-serif',
+              color: '#064e3b',
+              background: 'transparent',
+              border: 'none',
+              outline: 'none',
+              padding: '0',
+              marginBottom: '12px',
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+            }}
           />
+          {/* Slug Input with Badge */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 12px',
+                background: '#f9fafb',
+                border: '1px solid #f3f4f6',
+                borderRadius: '12px',
+                transition: 'all 0.2s',
+                flex: 1,
+                maxWidth: '500px',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: '10px',
+                  fontWeight: 900,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: '#059669',
+                  background: 'rgba(16, 185, 129, 0.08)',
+                  padding: '2px 8px',
+                  borderRadius: '4px',
+                  fontFamily: 'Inter, system-ui, sans-serif',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Slug
+              </span>
+              <input
+                type="text"
+                placeholder="post-url-slug"
+                value={slug}
+                onChange={handleSlugChange}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  outline: 'none',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  fontFamily: 'Inter, system-ui, sans-serif',
+                  color: '#065f46',
+                  flex: 1,
+                  minWidth: 0,
+                }}
+              />
+            </div>
+            <button
+              onClick={generateSlugFromTitle}
+              type="button"
+              title="Auto-generate from title"
+              style={{
+                padding: '6px',
+                color: '#9ca3af',
+                background: 'transparent',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#059669';
+                e.currentTarget.style.background = 'rgba(16, 185, 129, 0.08)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '#9ca3af';
+                e.currentTarget.style.background = 'transparent';
+              }}
+            >
+              <RefreshCw size={16} />
+            </button>
+          </div>
         </div>
       )}
       <BlockNoteView
@@ -1049,6 +1385,7 @@ export function Editor({
                 [
                   ...getDefaultReactSlashMenuItems(editor),
                   ...(aiConfig?.apiKey ? getAISlashMenuItems(editor) : []),
+                  voiceTypingItem,
                 ],
                 query
               )

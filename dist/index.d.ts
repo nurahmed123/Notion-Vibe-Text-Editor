@@ -6,6 +6,7 @@ interface EditorProps {
     editable?: boolean;
     showSlug?: boolean;
     onSlugChange?: (slug: string) => void;
+    onTitleChange?: (title: string) => void;
     cloudinaryConfig?: {
         apiKey: string;
         apiSecret: string;
@@ -19,6 +20,6 @@ interface EditorProps {
         apiBaseUrl?: string;
     };
 }
-declare function Editor({ onChange, initialContent, editable, showSlug, onSlugChange, cloudinaryConfig, aiConfig, }: EditorProps): react_jsx_runtime.JSX.Element;
+declare function Editor({ onChange, initialContent, editable, showSlug, onSlugChange, onTitleChange, cloudinaryConfig, aiConfig, }: EditorProps): react_jsx_runtime.JSX.Element;
 
 export { Editor, type EditorProps };

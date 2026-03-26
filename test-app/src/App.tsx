@@ -14,7 +14,7 @@ function App() {
           <Editor 
             initialContent={""}
             onChange={(val) => setContent(val)} 
-            showSlug={false} 
+            showSlug={true} 
             onSlugChange={(s) => console.log('Slug:', s)}
             cloudinaryConfig={{
               apiKey: '865252537442689',

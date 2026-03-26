@@ -40,7 +40,7 @@ function styleInject(css, { insertAt } = {}) {
 }
 
 // src/styles.css
-styleInject(".sticky {\n  position: sticky;\n}\n.top-0 {\n  top: 0px;\n}\n.z-10 {\n  z-index: 10;\n}\n.mx-0\\.5 {\n  margin-left: 0.125rem;\n  margin-right: 0.125rem;\n}\n.mx-1 {\n  margin-left: 0.25rem;\n  margin-right: 0.25rem;\n}\n.mx-auto {\n  margin-left: auto;\n  margin-right: auto;\n}\n.my-2 {\n  margin-top: 0.5rem;\n  margin-bottom: 0.5rem;\n}\n.mb-0\\.5 {\n  margin-bottom: 0.125rem;\n}\n.mb-6 {\n  margin-bottom: 1.5rem;\n}\n.ml-\\[54px\\] {\n  margin-left: 54px;\n}\n.mr-6 {\n  margin-right: 1.5rem;\n}\n.mt-1 {\n  margin-top: 0.25rem;\n}\n.mt-8 {\n  margin-top: 2rem;\n}\n.block {\n  display: block;\n}\n.inline {\n  display: inline;\n}\n.flex {\n  display: flex;\n}\n.h-6 {\n  height: 1.5rem;\n}\n.h-\\[26px\\] {\n  height: 26px;\n}\n.max-h-\\[400px\\] {\n  max-height: 400px;\n}\n.min-h-0 {\n  min-height: 0px;\n}\n.min-h-\\[32px\\] {\n  min-height: 32px;\n}\n.min-h-\\[400px\\] {\n  min-height: 400px;\n}\n.min-h-\\[48px\\] {\n  min-height: 48px;\n}\n.w-auto {\n  width: auto;\n}\n.w-full {\n  width: 100%;\n}\n.w-px {\n  width: 1px;\n}\n.min-w-\\[32px\\] {\n  min-width: 32px;\n}\n.max-w-4xl {\n  max-width: 56rem;\n}\n.max-w-full {\n  max-width: 100%;\n}\n.flex-1 {\n  flex: 1 1 0%;\n}\n.cursor-pointer {\n  cursor: pointer;\n}\n.flex-row {\n  flex-direction: row;\n}\n.items-center {\n  align-items: center;\n}\n.gap-1 {\n  gap: 0.25rem;\n}\n.gap-4 {\n  gap: 1rem;\n}\n.self-center {\n  align-self: center;\n}\n.overflow-visible {\n  overflow: visible;\n}\n.overflow-y-auto {\n  overflow-y: auto;\n}\n.rounded {\n  border-radius: 0.25rem;\n}\n.rounded-lg {\n  border-radius: 0.5rem;\n}\n.rounded-md {\n  border-radius: 0.375rem;\n}\n.rounded-none {\n  border-radius: 0px;\n}\n.rounded-sm {\n  border-radius: 0.125rem;\n}\n.rounded-xl {\n  border-radius: 0.75rem;\n}\n.rounded-l-none {\n  border-top-left-radius: 0px;\n  border-bottom-left-radius: 0px;\n}\n.border {\n  border-width: 1px;\n}\n.border-l {\n  border-left-width: 1px;\n}\n.border-r {\n  border-right-width: 1px;\n}\n.border-none {\n  border-style: none;\n}\n.border-slate-200\\/50 {\n  border-color: rgb(226 232 240 / 0.5);\n}\n.border-slate-200\\/60 {\n  border-color: rgb(226 232 240 / 0.6);\n}\n.bg-emerald-50 {\n  --tw-bg-opacity: 1;\n  background-color: rgb(236 253 245 / var(--tw-bg-opacity, 1));\n}\n.bg-slate-200 {\n  --tw-bg-opacity: 1;\n  background-color: rgb(226 232 240 / var(--tw-bg-opacity, 1));\n}\n.bg-slate-50\\/50 {\n  background-color: rgb(248 250 252 / 0.5);\n}\n.bg-transparent {\n  background-color: transparent;\n}\n.bg-white {\n  --tw-bg-opacity: 1;\n  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));\n}\n.bg-white\\/95 {\n  background-color: rgb(255 255 255 / 0.95);\n}\n.p-1 {\n  padding: 0.25rem;\n}\n.p-1\\.5 {\n  padding: 0.375rem;\n}\n.px-1\\.5 {\n  padding-left: 0.375rem;\n  padding-right: 0.375rem;\n}\n.px-2 {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n.px-3 {\n  padding-left: 0.75rem;\n  padding-right: 0.75rem;\n}\n.py-2 {\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n}\n.pb-0 {\n  padding-bottom: 0px;\n}\n.pb-32 {\n  padding-bottom: 8rem;\n}\n.text-5xl {\n  font-size: 3rem;\n  line-height: 1;\n}\n.text-\\[10px\\] {\n  font-size: 10px;\n}\n.font-extrabold {\n  font-weight: 800;\n}\n.uppercase {\n  text-transform: uppercase;\n}\n.italic {\n  font-style: italic;\n}\n.tracking-tight {\n  letter-spacing: -0.025em;\n}\n.tracking-widest {\n  letter-spacing: 0.1em;\n}\n.text-emerald-600 {\n  --tw-text-opacity: 1;\n  color: rgb(5 150 105 / var(--tw-text-opacity, 1));\n}\n.text-emerald-700 {\n  --tw-text-opacity: 1;\n  color: rgb(4 120 87 / var(--tw-text-opacity, 1));\n}\n.text-slate-600 {\n  --tw-text-opacity: 1;\n  color: rgb(71 85 105 / var(--tw-text-opacity, 1));\n}\n.text-slate-900 {\n  --tw-text-opacity: 1;\n  color: rgb(15 23 42 / var(--tw-text-opacity, 1));\n}\n.underline {\n  text-decoration-line: underline;\n}\n.placeholder-slate-200::-moz-placeholder {\n  --tw-placeholder-opacity: 1;\n  color: rgb(226 232 240 / var(--tw-placeholder-opacity, 1));\n}\n.placeholder-slate-200::placeholder {\n  --tw-placeholder-opacity: 1;\n  color: rgb(226 232 240 / var(--tw-placeholder-opacity, 1));\n}\n.opacity-40 {\n  opacity: 0.4;\n}\n.opacity-60 {\n  opacity: 0.6;\n}\n.shadow {\n  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-sm {\n  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);\n  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-xl {\n  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-slate-200\\/40 {\n  --tw-shadow-color: rgb(226 232 240 / 0.4);\n  --tw-shadow: var(--tw-shadow-colored) ;\n}\n.outline-none {\n  outline: 2px solid transparent;\n  outline-offset: 2px;\n}\n.filter {\n  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);\n}\n.backdrop-blur-md {\n  --tw-backdrop-blur: blur(12px);\n  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);\n  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);\n}\n.transition {\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    -webkit-backdrop-filter;\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    backdrop-filter;\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    backdrop-filter,\n    -webkit-backdrop-filter;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.transition-all {\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.transition-colors {\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.duration-200 {\n  transition-duration: 200ms;\n}\n.duration-300 {\n  transition-duration: 300ms;\n}\n.ease-in-out {\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n}\n.first\\:mt-0:first-child {\n  margin-top: 0px;\n}\n.last\\:hidden:last-child {\n  display: none;\n}\n.focus-within\\:bg-slate-50:focus-within {\n  --tw-bg-opacity: 1;\n  background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1));\n}\n.hover\\:-translate-y-0\\.5:hover {\n  --tw-translate-y: -0.125rem;\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n.hover\\:border-slate-300:hover {\n  --tw-border-opacity: 1;\n  border-color: rgb(203 213 225 / var(--tw-border-opacity, 1));\n}\n.hover\\:bg-black\\/5:hover {\n  background-color: rgb(0 0 0 / 0.05);\n}\n.hover\\:bg-slate-100:hover {\n  --tw-bg-opacity: 1;\n  background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));\n}\n.hover\\:bg-slate-50:hover {\n  --tw-bg-opacity: 1;\n  background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1));\n}\n.hover\\:text-slate-900:hover {\n  --tw-text-opacity: 1;\n  color: rgb(15 23 42 / var(--tw-text-opacity, 1));\n}\n.hover\\:shadow-md:hover {\n  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.focus\\:ring-0:focus {\n  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);\n  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow),\n    var(--tw-ring-shadow),\n    var(--tw-shadow, 0 0 #0000);\n}\n.active\\:scale-95:active {\n  --tw-scale-x: .95;\n  --tw-scale-y: .95;\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n");
+styleInject(".relative {\n  position: relative;\n}\n.sticky {\n  position: sticky;\n}\n.top-0 {\n  top: 0px;\n}\n.z-10 {\n  z-index: 10;\n}\n.mx-0\\.5 {\n  margin-left: 0.125rem;\n  margin-right: 0.125rem;\n}\n.mx-1 {\n  margin-left: 0.25rem;\n  margin-right: 0.25rem;\n}\n.mx-auto {\n  margin-left: auto;\n  margin-right: auto;\n}\n.my-2 {\n  margin-top: 0.5rem;\n  margin-bottom: 0.5rem;\n}\n.mb-0\\.5 {\n  margin-bottom: 0.125rem;\n}\n.mt-1 {\n  margin-top: 0.25rem;\n}\n.block {\n  display: block;\n}\n.inline {\n  display: inline;\n}\n.flex {\n  display: flex;\n}\n.h-6 {\n  height: 1.5rem;\n}\n.h-\\[26px\\] {\n  height: 26px;\n}\n.max-h-\\[400px\\] {\n  max-height: 400px;\n}\n.min-h-0 {\n  min-height: 0px;\n}\n.min-h-\\[32px\\] {\n  min-height: 32px;\n}\n.min-h-\\[400px\\] {\n  min-height: 400px;\n}\n.min-h-\\[48px\\] {\n  min-height: 48px;\n}\n.w-auto {\n  width: auto;\n}\n.w-full {\n  width: 100%;\n}\n.w-px {\n  width: 1px;\n}\n.min-w-\\[32px\\] {\n  min-width: 32px;\n}\n.max-w-4xl {\n  max-width: 56rem;\n}\n.max-w-full {\n  max-width: 100%;\n}\n.flex-1 {\n  flex: 1 1 0%;\n}\n.transform {\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n.cursor-pointer {\n  cursor: pointer;\n}\n.flex-row {\n  flex-direction: row;\n}\n.items-center {\n  align-items: center;\n}\n.gap-1 {\n  gap: 0.25rem;\n}\n.gap-4 {\n  gap: 1rem;\n}\n.self-center {\n  align-self: center;\n}\n.overflow-visible {\n  overflow: visible;\n}\n.overflow-y-auto {\n  overflow-y: auto;\n}\n.rounded {\n  border-radius: 0.25rem;\n}\n.rounded-lg {\n  border-radius: 0.5rem;\n}\n.rounded-md {\n  border-radius: 0.375rem;\n}\n.rounded-none {\n  border-radius: 0px;\n}\n.rounded-sm {\n  border-radius: 0.125rem;\n}\n.rounded-xl {\n  border-radius: 0.75rem;\n}\n.rounded-l-none {\n  border-top-left-radius: 0px;\n  border-bottom-left-radius: 0px;\n}\n.border {\n  border-width: 1px;\n}\n.border-l {\n  border-left-width: 1px;\n}\n.border-r {\n  border-right-width: 1px;\n}\n.border-slate-200\\/50 {\n  border-color: rgb(226 232 240 / 0.5);\n}\n.border-slate-200\\/60 {\n  border-color: rgb(226 232 240 / 0.6);\n}\n.bg-emerald-50 {\n  --tw-bg-opacity: 1;\n  background-color: rgb(236 253 245 / var(--tw-bg-opacity, 1));\n}\n.bg-slate-200 {\n  --tw-bg-opacity: 1;\n  background-color: rgb(226 232 240 / var(--tw-bg-opacity, 1));\n}\n.bg-slate-50\\/50 {\n  background-color: rgb(248 250 252 / 0.5);\n}\n.bg-transparent {\n  background-color: transparent;\n}\n.bg-white {\n  --tw-bg-opacity: 1;\n  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));\n}\n.bg-white\\/95 {\n  background-color: rgb(255 255 255 / 0.95);\n}\n.p-1 {\n  padding: 0.25rem;\n}\n.p-1\\.5 {\n  padding: 0.375rem;\n}\n.px-1\\.5 {\n  padding-left: 0.375rem;\n  padding-right: 0.375rem;\n}\n.px-2 {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n.px-3 {\n  padding-left: 0.75rem;\n  padding-right: 0.75rem;\n}\n.py-2 {\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n}\n.pb-0 {\n  padding-bottom: 0px;\n}\n.pb-32 {\n  padding-bottom: 8rem;\n}\n.text-\\[10px\\] {\n  font-size: 10px;\n}\n.uppercase {\n  text-transform: uppercase;\n}\n.italic {\n  font-style: italic;\n}\n.tracking-widest {\n  letter-spacing: 0.1em;\n}\n.text-emerald-600 {\n  --tw-text-opacity: 1;\n  color: rgb(5 150 105 / var(--tw-text-opacity, 1));\n}\n.text-emerald-700 {\n  --tw-text-opacity: 1;\n  color: rgb(4 120 87 / var(--tw-text-opacity, 1));\n}\n.text-slate-600 {\n  --tw-text-opacity: 1;\n  color: rgb(71 85 105 / var(--tw-text-opacity, 1));\n}\n.underline {\n  text-decoration-line: underline;\n}\n.opacity-40 {\n  opacity: 0.4;\n}\n.opacity-60 {\n  opacity: 0.6;\n}\n.shadow {\n  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-sm {\n  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);\n  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-xl {\n  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.shadow-slate-200\\/40 {\n  --tw-shadow-color: rgb(226 232 240 / 0.4);\n  --tw-shadow: var(--tw-shadow-colored) ;\n}\n.outline {\n  outline-style: solid;\n}\n.blur {\n  --tw-blur: blur(8px);\n  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);\n}\n.filter {\n  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);\n}\n.backdrop-blur-md {\n  --tw-backdrop-blur: blur(12px);\n  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);\n  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);\n}\n.transition {\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    -webkit-backdrop-filter;\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    backdrop-filter;\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke,\n    opacity,\n    box-shadow,\n    transform,\n    filter,\n    backdrop-filter,\n    -webkit-backdrop-filter;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.transition-all {\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.transition-colors {\n  transition-property:\n    color,\n    background-color,\n    border-color,\n    text-decoration-color,\n    fill,\n    stroke;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.duration-200 {\n  transition-duration: 200ms;\n}\n.duration-300 {\n  transition-duration: 300ms;\n}\n.ease-in-out {\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n}\n.first\\:mt-0:first-child {\n  margin-top: 0px;\n}\n.last\\:hidden:last-child {\n  display: none;\n}\n.focus-within\\:bg-slate-50:focus-within {\n  --tw-bg-opacity: 1;\n  background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1));\n}\n.hover\\:-translate-y-0\\.5:hover {\n  --tw-translate-y: -0.125rem;\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n.hover\\:border-slate-300:hover {\n  --tw-border-opacity: 1;\n  border-color: rgb(203 213 225 / var(--tw-border-opacity, 1));\n}\n.hover\\:bg-black\\/5:hover {\n  background-color: rgb(0 0 0 / 0.05);\n}\n.hover\\:bg-slate-100:hover {\n  --tw-bg-opacity: 1;\n  background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));\n}\n.hover\\:bg-slate-50:hover {\n  --tw-bg-opacity: 1;\n  background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1));\n}\n.hover\\:text-slate-900:hover {\n  --tw-text-opacity: 1;\n  color: rgb(15 23 42 / var(--tw-text-opacity, 1));\n}\n.hover\\:shadow-md:hover {\n  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);\n  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);\n  box-shadow:\n    var(--tw-ring-offset-shadow, 0 0 #0000),\n    var(--tw-ring-shadow, 0 0 #0000),\n    var(--tw-shadow);\n}\n.active\\:scale-95:active {\n  --tw-scale-x: .95;\n  --tw-scale-y: .95;\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n");
 var alertTypes = [
   {
     title: "Warning",
@@ -9353,10 +9353,48 @@ function Editor({
   editable = true,
   showSlug = false,
   onSlugChange,
+  onTitleChange,
   cloudinaryConfig,
   aiConfig
 }) {
   const [slug, setSlug] = react$1.useState("");
+  const [title, setTitle] = react$1.useState("");
+  const [isListening, setIsListening] = react$1.useState(false);
+  const [voiceLang, setVoiceLang] = react$1.useState("en-US");
+  const voiceLangRef = react$1.useRef("en-US");
+  const recognitionRef = react$1.useRef(null);
+  const voiceLanguages = react$1.useMemo(() => [
+    { code: "en-US", label: "\u{1F1FA}\u{1F1F8} English" },
+    { code: "bn-BD", label: "\u{1F1E7}\u{1F1E9} \u09AC\u09BE\u0982\u09B2\u09BE" },
+    { code: "hi-IN", label: "\u{1F1EE}\u{1F1F3} \u0939\u093F\u0928\u094D\u0926\u0940" },
+    { code: "ar-SA", label: "\u{1F1F8}\u{1F1E6} \u0627\u0644\u0639\u0631\u0628\u064A\u0629" },
+    { code: "es-ES", label: "\u{1F1EA}\u{1F1F8} Espa\xF1ol" },
+    { code: "fr-FR", label: "\u{1F1EB}\u{1F1F7} Fran\xE7ais" },
+    { code: "de-DE", label: "\u{1F1E9}\u{1F1EA} Deutsch" },
+    { code: "pt-BR", label: "\u{1F1E7}\u{1F1F7} Portugu\xEAs" },
+    { code: "ru-RU", label: "\u{1F1F7}\u{1F1FA} \u0420\u0443\u0441\u0441\u043A\u0438\u0439" },
+    { code: "zh-CN", label: "\u{1F1E8}\u{1F1F3} \u4E2D\u6587" },
+    { code: "ja-JP", label: "\u{1F1EF}\u{1F1F5} \u65E5\u672C\u8A9E" },
+    { code: "ko-KR", label: "\u{1F1F0}\u{1F1F7} \uD55C\uAD6D\uC5B4" },
+    { code: "tr-TR", label: "\u{1F1F9}\u{1F1F7} T\xFCrk\xE7e" },
+    { code: "ur-PK", label: "\u{1F1F5}\u{1F1F0} \u0627\u0631\u062F\u0648" },
+    { code: "it-IT", label: "\u{1F1EE}\u{1F1F9} Italiano" },
+    { code: "nl-NL", label: "\u{1F1F3}\u{1F1F1} Nederlands" },
+    { code: "pl-PL", label: "\u{1F1F5}\u{1F1F1} Polski" },
+    { code: "sv-SE", label: "\u{1F1F8}\u{1F1EA} Svenska" },
+    { code: "th-TH", label: "\u{1F1F9}\u{1F1ED} \u0E44\u0E17\u0E22" },
+    { code: "vi-VN", label: "\u{1F1FB}\u{1F1F3} Ti\u1EBFng Vi\u1EC7t" },
+    { code: "ms-MY", label: "\u{1F1F2}\u{1F1FE} Bahasa Melayu" },
+    { code: "id-ID", label: "\u{1F1EE}\u{1F1E9} Bahasa Indonesia" },
+    { code: "ta-IN", label: "\u{1F1EE}\u{1F1F3} \u0BA4\u0BAE\u0BBF\u0BB4\u0BCD" },
+    { code: "te-IN", label: "\u{1F1EE}\u{1F1F3} \u0C24\u0C46\u0C32\u0C41\u0C17\u0C41" },
+    { code: "fil-PH", label: "\u{1F1F5}\u{1F1ED} Filipino" },
+    { code: "uk-UA", label: "\u{1F1FA}\u{1F1E6} \u0423\u043A\u0440\u0430\u0457\u043D\u0441\u044C\u043A\u0430" },
+    { code: "el-GR", label: "\u{1F1EC}\u{1F1F7} \u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC" },
+    { code: "he-IL", label: "\u{1F1EE}\u{1F1F1} \u05E2\u05D1\u05E8\u05D9\u05EA" },
+    { code: "fa-IR", label: "\u{1F1EE}\u{1F1F7} \u0641\u0627\u0631\u0633\u06CC" },
+    { code: "sw-KE", label: "\u{1F1F0}\u{1F1EA} Kiswahili" }
+  ], []);
   const extractMediaUrls = (blocks) => {
     const urls = [];
     const traverse = (items) => {
@@ -9796,11 +9834,88 @@ function Editor({
     const currentBlocks = editor.document;
     onChange(JSON.stringify(currentBlocks, null, 2));
   };
+  const startVoiceTyping = react$1.useCallback((langOverride) => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Your browser does not support Voice Typing. Please use Chrome, Edge, or Safari.");
+      return;
+    }
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      recognitionRef.current = null;
+      setIsListening(false);
+      return;
+    }
+    const lang = langOverride || voiceLangRef.current;
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 1;
+    recognition.lang = lang;
+    recognition.onresult = (event) => {
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          const currentBlock = editor.getTextCursorPosition().block;
+          if (currentBlock) {
+            editor.insertInlineContent([{ type: "text", text: transcript, styles: {} }]);
+          }
+        }
+      }
+    };
+    recognition.onerror = (event) => {
+      console.error("[VoiceTyping] Error:", event.error);
+      if (event.error !== "no-speech") {
+        setIsListening(false);
+        recognitionRef.current = null;
+      }
+    };
+    recognition.onend = () => {
+      setIsListening(false);
+      recognitionRef.current = null;
+    };
+    recognition.start();
+    recognitionRef.current = recognition;
+    setIsListening(true);
+  }, [editor]);
+  const stopVoiceTyping = react$1.useCallback(() => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      recognitionRef.current = null;
+      setIsListening(false);
+    }
+  }, []);
+  const voiceTypingItem = react$1.useMemo(() => ({
+    title: "Voice Typing",
+    onItemClick: () => {
+      startVoiceTyping();
+    },
+    aliases: ["voice", "speech", "dictation", "mic", "microphone", "speak"],
+    group: "Media",
+    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Mic, { size: 18 }),
+    subtext: "Speak to type using your microphone"
+  }), [startVoiceTyping]);
   const handleSlugChange = (e) => {
-    const val = e.target.value;
+    const val = e.target.value.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "").replace(/-+/g, "-");
     setSlug(val);
     if (onSlugChange) {
       onSlugChange(val);
+    }
+  };
+  const handleTitleChange = (e) => {
+    const val = e.target.value;
+    setTitle(val);
+    if (onTitleChange) {
+      onTitleChange(val);
+    }
+  };
+  const generateSlugFromTitle = () => {
+    if (title) {
+      const generated = title.toLowerCase().replace(/[^\w\s-]+/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").replace(/^-+|-+$/g, "");
+      setSlug(generated);
+      if (onSlugChange) {
+        onSlugChange(generated);
+      }
     }
   };
   const FontSizeSelect = react$1.useCallback(() => {
@@ -10184,17 +10299,220 @@ function Editor({
       /* @__PURE__ */ jsxRuntime.jsx(react.CreateLinkButton, {}, "createLinkButton")
     ] }) });
   }, [editor, aiConfigStr, FontSizeSelect, FontFamilySelect]);
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: `bn-wrapper w-full max-w-4xl mx-auto transition-all duration-300 ease-in-out ${editable ? "min-h-[400px] pb-32" : "min-h-0 pb-0"}`, children: [
-    showSlug && editable && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mt-8 mb-6 ml-[54px] mr-6", children: /* @__PURE__ */ jsxRuntime.jsx(
-      "input",
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: `bn-wrapper w-full max-w-4xl mx-auto transition-all duration-300 ease-in-out ${editable ? "min-h-[400px] pb-32" : "min-h-0 pb-0"}`, style: { position: "relative" }, children: [
+    isListening && /* @__PURE__ */ jsxRuntime.jsxs(
+      "div",
       {
-        type: "text",
-        className: "w-full text-5xl font-extrabold tracking-tight bg-transparent outline-none border-none placeholder-slate-200 text-slate-900 focus:ring-0",
-        placeholder: "Document title...",
-        value: slug,
-        onChange: handleSlugChange
+        style: {
+          position: "sticky",
+          top: 0,
+          zIndex: 9999,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          padding: "10px 20px",
+          background: "linear-gradient(135deg, #ef4444, #dc2626)",
+          borderRadius: "12px",
+          margin: "0 16px 12px 16px",
+          boxShadow: "0 4px 15px rgba(239, 68, 68, 0.4)",
+          animation: "voicePulse 2s ease-in-out infinite"
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntime.jsx("style", { children: `
+            @keyframes voicePulse {
+              0%, 100% { box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); }
+              50% { box-shadow: 0 4px 25px rgba(239, 68, 68, 0.7); }
+            }
+            @keyframes micBounce {
+              0%, 100% { transform: scale(1); }
+              50% { transform: scale(1.2); }
+            }
+          ` }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            lucideReact.Mic,
+            {
+              size: 20,
+              color: "white",
+              style: { animation: "micBounce 1s ease-in-out infinite" }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntime.jsx("span", { style: { color: "white", fontFamily: "Inter, system-ui, sans-serif", fontWeight: 600, fontSize: "14px", letterSpacing: "0.5px" }, children: "Listening..." }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "select",
+            {
+              value: voiceLang,
+              onChange: (e) => {
+                const newLang = e.target.value;
+                setVoiceLang(newLang);
+                voiceLangRef.current = newLang;
+                if (recognitionRef.current) {
+                  recognitionRef.current.stop();
+                  recognitionRef.current = null;
+                  setIsListening(false);
+                  setTimeout(() => startVoiceTyping(newLang), 200);
+                }
+              },
+              style: {
+                padding: "4px 8px",
+                background: "rgba(255,255,255,0.2)",
+                border: "1px solid rgba(255,255,255,0.4)",
+                borderRadius: "8px",
+                color: "white",
+                fontFamily: "Inter, system-ui, sans-serif",
+                fontWeight: 600,
+                fontSize: "13px",
+                cursor: "pointer",
+                backdropFilter: "blur(4px)",
+                outline: "none",
+                appearance: "none",
+                WebkitAppearance: "none",
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "right 6px center",
+                paddingRight: "24px"
+              },
+              children: voiceLanguages.map((lang) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: lang.code, style: { color: "#333", background: "white" }, children: lang.label }, lang.code))
+            }
+          ),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "button",
+            {
+              onClick: stopVoiceTyping,
+              style: {
+                padding: "4px 14px",
+                background: "rgba(255,255,255,0.25)",
+                border: "1px solid rgba(255,255,255,0.5)",
+                borderRadius: "8px",
+                color: "white",
+                fontFamily: "Inter, system-ui, sans-serif",
+                fontWeight: 600,
+                fontSize: "13px",
+                cursor: "pointer",
+                backdropFilter: "blur(4px)",
+                transition: "background 0.2s"
+              },
+              onMouseEnter: (e) => e.currentTarget.style.background = "rgba(255,255,255,0.4)",
+              onMouseLeave: (e) => e.currentTarget.style.background = "rgba(255,255,255,0.25)",
+              children: "Stop"
+            }
+          )
+        ]
       }
-    ) }),
+    ),
+    showSlug && editable && /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: "0 16px", marginBottom: "8px" }, children: [
+      /* @__PURE__ */ jsxRuntime.jsx(
+        "input",
+        {
+          type: "text",
+          placeholder: "Enter a catchy title...",
+          value: title,
+          onChange: handleTitleChange,
+          style: {
+            width: "100%",
+            fontSize: "clamp(28px, 5vw, 48px)",
+            fontWeight: 900,
+            fontFamily: "Inter, system-ui, sans-serif",
+            color: "#064e3b",
+            background: "transparent",
+            border: "none",
+            outline: "none",
+            padding: "0",
+            marginBottom: "12px",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em"
+          }
+        }
+      ),
+      /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }, children: [
+        /* @__PURE__ */ jsxRuntime.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "6px 12px",
+              background: "#f9fafb",
+              border: "1px solid #f3f4f6",
+              borderRadius: "12px",
+              transition: "all 0.2s",
+              flex: 1,
+              maxWidth: "500px"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntime.jsx(
+                "span",
+                {
+                  style: {
+                    fontSize: "10px",
+                    fontWeight: 900,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: "#059669",
+                    background: "rgba(16, 185, 129, 0.08)",
+                    padding: "2px 8px",
+                    borderRadius: "4px",
+                    fontFamily: "Inter, system-ui, sans-serif",
+                    whiteSpace: "nowrap"
+                  },
+                  children: "Slug"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntime.jsx(
+                "input",
+                {
+                  type: "text",
+                  placeholder: "post-url-slug",
+                  value: slug,
+                  onChange: handleSlugChange,
+                  style: {
+                    background: "transparent",
+                    border: "none",
+                    outline: "none",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    fontFamily: "Inter, system-ui, sans-serif",
+                    color: "#065f46",
+                    flex: 1,
+                    minWidth: 0
+                  }
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntime.jsx(
+          "button",
+          {
+            onClick: generateSlugFromTitle,
+            type: "button",
+            title: "Auto-generate from title",
+            style: {
+              padding: "6px",
+              color: "#9ca3af",
+              background: "transparent",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              transition: "all 0.2s",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            },
+            onMouseEnter: (e) => {
+              e.currentTarget.style.color = "#059669";
+              e.currentTarget.style.background = "rgba(16, 185, 129, 0.08)";
+            },
+            onMouseLeave: (e) => {
+              e.currentTarget.style.color = "#9ca3af";
+              e.currentTarget.style.background = "transparent";
+            },
+            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { size: 16 })
+          }
+        )
+      ] })
+    ] }),
     /* @__PURE__ */ jsxRuntime.jsxs(
       mantine.BlockNoteView,
       {
@@ -10213,7 +10531,8 @@ function Editor({
               getItems: async (query) => extensions.filterSuggestionItems(
                 [
                   ...react.getDefaultReactSlashMenuItems(editor),
-                  ...aiConfig?.apiKey ? xlAi.getAISlashMenuItems(editor) : []
+                  ...aiConfig?.apiKey ? xlAi.getAISlashMenuItems(editor) : [],
+                  voiceTypingItem
                 ],
                 query
               )
