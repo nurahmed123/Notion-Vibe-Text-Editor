@@ -9356,18 +9356,71 @@ function Editor({
   cloudinaryConfig,
   aiConfig
 }) {
-  const prevBlocksRef = react$1.useRef([]);
   const [slug, setSlug] = react$1.useState("");
+  const extractMediaUrls = (blocks) => {
+    const urls = [];
+    const traverse = (items) => {
+      items.forEach((block) => {
+        if ((block.type === "image" || block.type === "video" || block.type === "audio" || block.type === "file") && block.props.url) {
+          urls.push(block.props.url);
+        }
+        if (block.children) {
+          traverse(block.children);
+        }
+      });
+    };
+    traverse(blocks);
+    return urls;
+  };
   const generateSignature = async (timestamp, publicId = null) => {
     if (!cloudinaryConfig) return "";
     let str = "";
-    if (cloudinaryConfig.folderName) str += `folder=${cloudinaryConfig.folderName}&`;
-    if (publicId) str += `public_id=${publicId}&`;
+    if (publicId) {
+      str += `public_id=${publicId}&`;
+    } else if (cloudinaryConfig.folderName) {
+      str += `folder=${cloudinaryConfig.folderName}&`;
+    }
     str += `timestamp=${timestamp}${cloudinaryConfig.apiSecret}`;
     const msgUint8 = new TextEncoder().encode(str);
     const hashBuffer = await crypto.subtle.digest("SHA-1", msgUint8);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  };
+  const deleteCloudinaryFile = async (url) => {
+    if (!cloudinaryConfig) return;
+    try {
+      const urlObj = new URL(url);
+      if (!urlObj.hostname.includes("cloudinary.com")) return;
+      const pathParts = urlObj.pathname.split("/");
+      const uploadIndex = pathParts.indexOf("upload");
+      if (uploadIndex === -1) return;
+      const resourceType = pathParts[uploadIndex - 1] || "image";
+      let publicIdPart = pathParts.slice(uploadIndex + 1);
+      if (publicIdPart.length > 0 && publicIdPart[0].startsWith("v") && !isNaN(parseInt(publicIdPart[0].substring(1)))) {
+        publicIdPart.shift();
+      }
+      let publicIdStr = publicIdPart.join("/");
+      if (resourceType !== "raw") {
+        const lastDotIndex = publicIdStr.lastIndexOf(".");
+        if (lastDotIndex !== -1) {
+          publicIdStr = publicIdStr.substring(0, lastDotIndex);
+        }
+      }
+      const publicId = decodeURIComponent(publicIdStr);
+      const timestamp = Math.floor(Date.now() / 1e3);
+      const signature = await generateSignature(timestamp, publicId);
+      const formData = new FormData();
+      formData.append("public_id", publicId);
+      formData.append("api_key", cloudinaryConfig.apiKey);
+      formData.append("timestamp", timestamp.toString());
+      formData.append("signature", signature);
+      fetch(
+        `https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/${resourceType}/destroy`,
+        { method: "POST", body: formData }
+      ).then((r) => r.json()).then((data) => console.log("[Editor] Cloudinary delete response:", data)).catch((e) => console.error("[Editor] Cloudinary delete error:", e));
+    } catch (e) {
+      console.error("Failed to parse and delete Cloudinary file:", e);
+    }
   };
   const uploadFile = async (file) => {
     if (!cloudinaryConfig) {
@@ -9486,11 +9539,56 @@ function Editor({
     uploadFile: cloudinaryConfig ? uploadFile : void 0,
     schema
   });
+  const prevMediaRef = react$1.useRef(/* @__PURE__ */ new Set());
+  const deleteTimers = react$1.useRef(/* @__PURE__ */ new Map());
+  const cloudinaryConfigRef = react$1.useRef(cloudinaryConfig);
+  cloudinaryConfigRef.current = cloudinaryConfig;
   react$1.useEffect(() => {
-    if (editor.document) {
-      prevBlocksRef.current = editor.document;
+    const initialMedia = extractMediaUrls(editor.document);
+    prevMediaRef.current = new Set(initialMedia);
+    const checkForDeletedMedia = () => {
+      if (!cloudinaryConfigRef.current) return;
+      const currentBlocks = editor.document;
+      const currentMedia = new Set(extractMediaUrls(currentBlocks));
+      const prevMedia = prevMediaRef.current;
+      prevMedia.forEach((url) => {
+        if (!currentMedia.has(url)) {
+          console.log("[Editor] Media removed from document:", url);
+          if (deleteTimers.current.has(url)) {
+            clearTimeout(deleteTimers.current.get(url));
+          }
+          const timer = setTimeout(() => {
+            const latestMedia = extractMediaUrls(editor.document);
+            const stillMissing = !latestMedia.includes(url);
+            console.log("[Editor] Checking after 5s if still missing:", url, stillMissing);
+            if (stillMissing) {
+              deleteCloudinaryFile(url);
+            }
+            deleteTimers.current.delete(url);
+          }, 5e3);
+          deleteTimers.current.set(url, timer);
+        }
+      });
+      currentMedia.forEach((url) => {
+        if (!prevMedia.has(url)) {
+          console.log("[Editor] New media detected:", url);
+          if (deleteTimers.current.has(url)) {
+            console.log("[Editor] Cancelling pending delete (media re-added):", url);
+            clearTimeout(deleteTimers.current.get(url));
+            deleteTimers.current.delete(url);
+          }
+        }
+      });
+      prevMediaRef.current = currentMedia;
+    };
+    const tiptap = editor._tiptapEditor;
+    if (tiptap) {
+      tiptap.on("update", checkForDeletedMedia);
+      return () => {
+        tiptap.off("update", checkForDeletedMedia);
+      };
     }
-  }, [editor.document]);
+  }, [editor]);
   react$1.useEffect(() => {
     const fonts = [
       // Sans Serif
@@ -9696,7 +9794,6 @@ function Editor({
   }, []);
   const handleDocChange = async () => {
     const currentBlocks = editor.document;
-    prevBlocksRef.current = currentBlocks;
     onChange(JSON.stringify(currentBlocks, null, 2));
   };
   const handleSlugChange = (e) => {

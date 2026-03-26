@@ -228,7 +228,6 @@ export function Editor({
   cloudinaryConfig,
   aiConfig,
 }: EditorProps) {
-  const prevBlocksRef = useRef<Block[]>([]);
   const [slug, setSlug] = useState("");
 
   const extractMediaUrls = (blocks: Block[]): string[] => {
@@ -256,14 +255,61 @@ export function Editor({
   const generateSignature = async (timestamp: number, publicId: string | null = null) => {
     if (!cloudinaryConfig) return "";
     let str = "";
-    if (cloudinaryConfig.folderName) str += `folder=${cloudinaryConfig.folderName}&`;
-    if (publicId) str += `public_id=${publicId}&`;
+    if (publicId) {
+      str += `public_id=${publicId}&`;
+    } else if (cloudinaryConfig.folderName) {
+      str += `folder=${cloudinaryConfig.folderName}&`;
+    }
     str += `timestamp=${timestamp}${cloudinaryConfig.apiSecret}`;
 
     const msgUint8 = new TextEncoder().encode(str);
     const hashBuffer = await crypto.subtle.digest("SHA-1", msgUint8);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  };
+
+  const deleteCloudinaryFile = async (url: string) => {
+    if (!cloudinaryConfig) return;
+    try {
+      const urlObj = new URL(url);
+      if (!urlObj.hostname.includes("cloudinary.com")) return;
+
+      const pathParts = urlObj.pathname.split('/');
+      const uploadIndex = pathParts.indexOf("upload");
+      if (uploadIndex === -1) return;
+
+      const resourceType = pathParts[uploadIndex - 1] || "image";
+      
+      let publicIdPart = pathParts.slice(uploadIndex + 1);
+      if (publicIdPart.length > 0 && publicIdPart[0].startsWith("v") && !isNaN(parseInt(publicIdPart[0].substring(1)))) {
+        publicIdPart.shift();
+      }
+      
+      let publicIdStr = publicIdPart.join('/');
+      if (resourceType !== "raw") {
+        const lastDotIndex = publicIdStr.lastIndexOf(".");
+        if (lastDotIndex !== -1) {
+          publicIdStr = publicIdStr.substring(0, lastDotIndex);
+        }
+      }
+      const publicId = decodeURIComponent(publicIdStr);
+
+      const timestamp = Math.floor(Date.now() / 1000);
+      const signature = await generateSignature(timestamp, publicId);
+
+      const formData = new FormData();
+      formData.append("public_id", publicId);
+      formData.append("api_key", cloudinaryConfig.apiKey);
+      formData.append("timestamp", timestamp.toString());
+      formData.append("signature", signature);
+
+      fetch(
+        `https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/${resourceType}/destroy`,
+        { method: "POST", body: formData }
+      ).then(r => r.json()).then(data => console.log("[Editor] Cloudinary delete response:", data)).catch((e) => console.error("[Editor] Cloudinary delete error:", e));
+    } catch (e) {
+      console.error("Failed to parse and delete Cloudinary file:", e);
+    }
   };
 
   const uploadFile = async (file: File) => {
@@ -392,11 +438,73 @@ export function Editor({
     schema,
   });
 
+  // Track uploaded media URLs and delete from Cloudinary when removed
+  const prevMediaRef = useRef<Set<string>>(new Set());
+  const deleteTimers = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
+  const cloudinaryConfigRef = useRef(cloudinaryConfig);
+  cloudinaryConfigRef.current = cloudinaryConfig;
+
   useEffect(() => {
-    if (editor.document) {
-      prevBlocksRef.current = editor.document as any as Block[];
+    // Initialize with any media already in the document
+    const initialMedia = extractMediaUrls(editor.document as any as Block[]);
+    prevMediaRef.current = new Set(initialMedia);
+
+    const checkForDeletedMedia = () => {
+      if (!cloudinaryConfigRef.current) return;
+
+      const currentBlocks = editor.document as any as Block[];
+      const currentMedia = new Set(extractMediaUrls(currentBlocks));
+      const prevMedia = prevMediaRef.current;
+
+      // Find URLs that were in previous state but not in current
+      prevMedia.forEach((url) => {
+        if (!currentMedia.has(url)) {
+          console.log("[Editor] Media removed from document:", url);
+          
+          // Cancel any existing timer for this URL (in case of rapid changes)
+          if (deleteTimers.current.has(url)) {
+            clearTimeout(deleteTimers.current.get(url)!);
+          }
+          
+          // Set a 5-second grace period before deleting
+          const timer = setTimeout(() => {
+            const latestMedia = extractMediaUrls(editor.document as any as Block[]);
+            const stillMissing = !latestMedia.includes(url);
+            console.log("[Editor] Checking after 5s if still missing:", url, stillMissing);
+            if (stillMissing) {
+              deleteCloudinaryFile(url);
+            }
+            deleteTimers.current.delete(url);
+          }, 5000);
+          
+          deleteTimers.current.set(url, timer);
+        }
+      });
+
+      // Find URLs that are new (just uploaded) — cancel pending deletes if re-added
+      currentMedia.forEach((url) => {
+        if (!prevMedia.has(url)) {
+          console.log("[Editor] New media detected:", url);
+          if (deleteTimers.current.has(url)) {
+            console.log("[Editor] Cancelling pending delete (media re-added):", url);
+            clearTimeout(deleteTimers.current.get(url)!);
+            deleteTimers.current.delete(url);
+          }
+        }
+      });
+
+      prevMediaRef.current = currentMedia;
+    };
+
+    // Subscribe to the underlying TipTap editor's update event
+    const tiptap = (editor as any)._tiptapEditor;
+    if (tiptap) {
+      tiptap.on("update", checkForDeletedMedia);
+      return () => {
+        tiptap.off("update", checkForDeletedMedia);
+      };
     }
-  }, [editor.document]);
+  }, [editor]);
 
   useEffect(() => {
     const fonts = [
@@ -407,14 +515,12 @@ export function Editor({
       "IBM+Plex+Sans:wght@400;700", "Josefin+Sans:wght@400;700", "Titillium+Web:wght@400;700", "Manrope:wght@400;700", "Dosis:wght@400;700",
       "Mukta:wght@400;700", "Chakra+Petch:wght@400;700", "Source+Sans+3:wght@400;700", "Inter:wght@400;700", "Montserrat:wght@400;700",
       "Outfit:wght@400;700", "Comfortaa:wght@400;700",
-
       // Serif
       "Roboto+Slab:wght@400;700", "Merriweather:wght@400;700", "PT+Serif:wght@400;700", "Noto+Serif:wght@400;700", "Libre+Baskerville:wght@400;700",
       "Crimson+Text:wght@400;700", "Bitter:wght@400;700", "EB+Garamond:wght@400;700", "Cormorant+Garamond:wght@400;700", "Vollkorn:wght@400;700",
       "Arvo:wght@400;700", "Domine:wght@400;700", "Bree+Serif:wght@400;700", "Slabo+27px", "Sorts+Mill+Goudy", "Frank+Ruhl+Libre:wght@400;700",
       "Tinos:wght@400;700", "Old+Standard+TT:wght@400;700", "Suez+One:wght@400", "Lora:wght@400;700", "Playfair+Display:wght@400;700",
       "Zilla+Slab:wght@400;700", "Cinzel:wght@400;700", "Abril+Fatface:wght@400",
-
       // Display / Modern
       "Oswald:wght@400;700", "Bebas+Neue:wght@400", "Anton:wght@400", "Righteous:wght@400", "Lobster:wght@400", "Bangers:wght@400",
       "Fredoka:wght@400;700", "Paytone+One:wght@400", "Passion+One:wght@400;700", "Alfa+Slab+One:wght@400", "Russo+One:wght@400",
@@ -422,20 +528,17 @@ export function Editor({
       "Bungee:wght@400", "Sigmar:wght@400", "Ultra:wght@400", "Unbounded:wght@400;700", "Syne:wght@400;700", "Space+Grotesk:wght@400;700",
       "Syncopate:wght@400;700", "Audiowide:wght@400", "Orbitron:wght@400;700", "Exo+2:wght@400;700", "Rajdhani:wght@400;700",
       "Silkscreen:wght@400;700", "Jersey+15:wght@400",
-
       // Handwriting
       "Pacifico:wght@400", "Dancing+Script:wght@400;700", "Caveat:wght@400;700", "Shadows+Into+Light:wght@400", "Indie+Flower:wght@400",
       "Amatic+SC:wght@400;700", "Covered+By+Your+Grace:wght@400", "Sacramento:wght@400", "Great+Vibes:wght@400", "Yellowtail:wght@400",
       "Satisfy:wght@400", "Courgette:wght@400", "Kaushan+Script:wght@400", "Cookie:wght@400", "Parisienne:wght@400", "Gloria+Hallelujah:wght@400",
       "Permanent+Marker:wght@400", "Rock+Salt:wght@400", "Patrick+Hand:wght@400", "Kalam:wght@400;700", "Handlee:wght@400",
       "Marck+Script:wght@400", "Tangerine:wght@400;700", "Allura:wght@400", "Mr+Dafoe:wght@400",
-
       // Monospace
       "Roboto+Mono:wght@400;700", "Source+Code+Pro:wght@400;700", "IBM+Plex+Mono:wght@400;700", "Fira+Code:wght@400;700",
       "Inconsolata:wght@400;700", "Space+Mono:wght@400;700", "JetBrains+Mono:wght@400;700", "Ubuntu+Mono:wght@400;700",
       "Anonymous+Pro:wght@400;700", "VT323:wght@400", "Cutive+Mono:wght@400", "DM+Mono:wght@400;500", "Share+Tech+Mono:wght@400",
       "Overpass+Mono:wght@400;700",
-
       // Unique & Cool
       "Major+Mono+Display:wght@400", "Megrim:wght@400", "Gruppo:wght@400", "Electrolize:wght@400", "Michroma:wght@400",
       "Oxanium:wght@400;700", "Teko:wght@400;700", "Staatliches:wght@400", "Italiana:wght@400", "Cinzel+Decorative:wght@400;700",
@@ -443,7 +546,6 @@ export function Editor({
       "Unica+One:wght@400", "Six+Caps:wght@400", "Faster+One:wght@400", "Ewert:wght@400", "Geo:wght@400",
       "Kelly+Slab:wght@400", "Share+Tech:wght@400", "Zen+Dots:wght@400", "Codystar:wght@400", "Kumar+One:wght@400",
       "Nova+Mono:wght@400", "Underdog:wght@400", "Wire+One:wght@400", "Yatra+One:wght@400",
-
       // Gen Z
       "Lobster+Two:wght@400;700", "Barlow+Condensed:wght@400;700", "Gravitas+One", "Asap:wght@400;700", "Lilita+One",
       "Fira+Sans+Condensed:wght@400;700", "Delius", "Berkshire+Swash", "Sofia+Sans+Condensed:wght@400;700",
@@ -482,7 +584,6 @@ export function Editor({
 
   const handleDocChange = async () => {
     const currentBlocks = editor.document as any as Block[];
-    prevBlocksRef.current = currentBlocks;
     onChange(JSON.stringify(currentBlocks, null, 2));
   };
 

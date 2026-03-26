@@ -12,7 +12,7 @@
     "@mantine/core": "^7.9.0",
     "@mantine/hooks": "^7.9.0",
     "lucide-react": "^0.300.0",
-    "notion-vibe-text-editor": "^2.0.4",
+    "notion-vibe-text-editor": "file:..",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
